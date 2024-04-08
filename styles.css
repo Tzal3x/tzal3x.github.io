@@ -1,3 +1,6 @@
-.website-description {
-    color: #333;
+.root {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
