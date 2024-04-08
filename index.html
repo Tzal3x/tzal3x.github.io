@@ -3,12 +3,17 @@
 <head>
     <title>Lorem Ipsum</title>
     <link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.4/dist/terminal.min.css"/>
-    <link rel="stylesheet" href="./styles.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<div class="root">
+<div class="root"
+     style="
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;">
     <header>
         <h1 class="terminal-prompt">Lorem Ipsum</h1>
     </header>
@@ -29,7 +34,15 @@
             </ul>
         </nav>
     </div>
-    <div class="sections-grid">
+    <div class="sections-grid"
+         style="
+            display: grid;
+            grid-template-rows: auto;
+            grid-gap: 20px;
+            width: 100%;
+            max-width: 800px;
+            margin-top: 20px;
+            padding: 20px;">
         <div class="wrapper">
             <section>
                 <h2 class="intro-title">Intro</h2>
