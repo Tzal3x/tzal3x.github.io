@@ -3,13 +3,12 @@
     justify-content: flex-start;
     flex-direction: column;
     align-items: center;
-    background-color: #f0f0f0;
     height: 100vh;
 }
 
 .sections-grid {
     display: grid;
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: auto;
     grid-gap: 20px;
     width: 100%;
     max-width: 800px;
