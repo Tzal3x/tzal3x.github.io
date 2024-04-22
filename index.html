@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>🚧 Site under construction 🚧</title>
+    <title>Alex Tzimas | Personal Website</title>
     <link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.4/dist/terminal.min.css"/>
+    <link rel="icon" href="favicon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -13,24 +14,22 @@
         justify-content: flex-start;
         flex-direction: column;
         align-items: center;
-        height: 100vh;">
+        height: 100vh;
+        padding: 20px;
+    ">
     <header>
-        <h1 class="terminal-prompt">Lorem Ipsum</h1>
+        <h1 class="terminal-prompt">Alex Tzimas</h1>
     </header>
     <div style="width: 100%; max-width: 800px">
         <nav>
             <ul style="display: flex; flex-direction: row; justify-content: space-evenly; gap: 24px; flex-wrap: wrap">
                 <!-- TODO - include CV too! -->
-                <li><a href="#">About</a></li>
+                <li><a href="./index.html">Home</a></li>
+
+                <li><a href="./about.html">About Me</a></li>
 
                 <!-- TODO -->
-                <li><a href="#">Articles</a></li>
-
-                <!-- TODO -->
-                <li><a href="#">Contact</a></li>
-
-                <!-- TODO -->
-                <li><a href="#">RSS</a></li>
+                <li><a href="./resources.html">Resources & Good reads</a></li>
             </ul>
         </nav>
     </div>
@@ -47,11 +46,13 @@
             <section>
                 <h2 class="intro-title">Intro</h2>
                 <p class="intro-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum.
+                    Welcome to my personal website!
+                    I am a software engineer based in Athens, Greece with a passion for books,
+                    frugal software, and a love for the <a href="https://en.wikipedia.org/wiki/Slow_movement_(culture)#:~:text=%22a%20cultural%20revolution%20against%20the,rather%20than%20just%20counting%20them.">slow movement</a>.
+
+                    This is the place where I do my shameless self-promo and
+                    write articles for stuff that I consider interesting
+                    (and hopefully you will too).
                 </p>
             </section>
         </div>
@@ -59,27 +60,19 @@
             <section>
                 <h2 class="website-title">Articles</h2>
                 <p class="website-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.
+                    Here you will find some of my writings.
+                    In the future, I will expand this section with more articles
+                    as long as time allows and motivation persists.
                 </p>
                 <div class="terminal-timeline">
-                    <div class="terminal-card">
-                        <header>Article 2</header>
-                        <div>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita, quas
-                            ex vero enim in doloribus officiis ullam vel nam esse sapiente velit
-                            incidunt. Eaque quod et, aut maiores excepturi sint.
-                        </div>
-                    </div>
-                    <div class="terminal-card">
+                    <div class="terminal-card" style="cursor: not-allowed" onclick="location.href='#';">
                         <header>
-                            Article 1
+                            🚧 (WIP) Apr. 2024: <i>"A LoRaWAN setup tale of spring 2024"</i>
                         </header>
                         <div>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita, quas
-                            ex vero enim in doloribus officiis ullam vel nam esse sapiente velit
-                            incidunt. Eaque quod et, aut maiores excepturi sint.
+                            A struggling story of setting up a simple LoRaWAN network
+                            with a gateway and end nodes.
+                            How hard can it be?
                         </div>
                     </div>
                 </div>
@@ -88,7 +81,7 @@
     </div>
     <footer>
         <p>
-            &copy; Lorem Ipsum
+            &copy; Alex Tzimas 2024
         </p>
     </footer>
 </div>

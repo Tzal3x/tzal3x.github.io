@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Alex Tzimas | Personal Website</title>
+    <link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.4/dist/terminal.min.css"/>
+    <link rel="icon" href="favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<script>
+    function sendEmail() {
+        window.location = "mailto:tzalex@outlook.com.gr";
+    }
+</script>
+<body>
+<div class="root"
+     style="
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+        padding: 20px;
+    ">
+    <header>
+        <h1 class="terminal-prompt">Alex Tzimas</h1>
+    </header>
+    <div style="width: 100%; max-width: 800px;">
+        <nav>
+            <ul style="display: flex; flex-direction: row; justify-content: space-evenly; gap: 24px; flex-wrap: wrap">
+                <!-- TODO - include CV too! -->
+                <li><a href="./index.html">Home</a></li>
+
+                <li><a href="./about.html">About Me</a></li>
+
+                <!-- TODO -->
+                <li><a href="./resources.html">Resources & Good reads</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="sections-grid"
+         style="
+            display: grid;
+            grid-template-rows: auto;
+            grid-gap: 20px;
+            width: 100%;
+            max-width: 800px;
+            margin-top: 20px;
+            padding: 20px;">
+        <div class="wrapper">
+            <section>
+                <h2 class="intro-title">About me</h2>
+                <p>
+                    This is a timeline of my education and career as a software engineer.
+                    <br><br>
+                    Starting from my B.Sc. in Statistics, at first everything revolved around data
+                    science and math, but it wasn't until my M.Sc. in Computer Science, and my first role
+                    in a startup where CS was where I found what really suited me.
+                    <br><br>
+                    From there on, I've been working as a full stack software engineer, with a focus on
+                    backend development. Currently, I am working at Mysten Labs, a startup that created the Sui blockchain,
+                    and aims to onboard the next generation of web3 applications.
+                </p>
+                <table>
+                    <caption>
+                        Education & Career Path
+                    </caption>
+                    <tfoot>
+                    <tr>
+                        <th colspan="5"><a href="./resume_alex_tzimas.pdf"
+                                           target="_blank">Download Detailed CV</a></th>
+                    </tr>
+                    </tfoot>
+                    <tbody>
+                    </tbody>
+                    <thead>
+                    <tr>
+                        <th>When</th>
+                        <th>Where</th>
+                        <th>What</th>
+                        <th>Role</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Sept. 2023 - Now</td>
+                        <td>Mysten Labs</td>
+                        <td>Full time</td>
+                        <td>Full Stack Software Engineer</td>
+                    </tr>
+                    <tr>
+                        <td>Sept. 2022 - June 2023</td>
+                        <td>Hellenic Armed Forces</td>
+                        <td>Military Service</td>
+                        <td>Soldier</td>
+                    </tr>
+                    <tr>
+                        <td>Mar. 2021 - Sept. 2022</td>
+                        <td>Programize LLC</td>
+                        <td>Full time</td>
+                        <td>Software Engineer</td>
+                    </tr>
+                    <tr>
+                        <td>Nov. 2020 - Mar. 2021</td>
+                        <td>Metis Cybertechnology</td>
+                        <td>Full time but short-lived</td>
+                        <td>Machine Learning Engineer</td>
+                    </tr>
+                    <tr>
+                        <td>Jan. 2020 - Nov. 2020</td>
+                        <td>VAIX - A SportsRadar company</td>
+                        <td>Full time</td>
+                        <td>Machine Learning Engineer</td>
+                    </tr>
+                    <tr>
+                        <td>2018-2019</td>
+                        <td>Athens University of Economics and Business</td>
+                        <td>M.Sc. Computer Science</td>
+                        <td>Uni Student</td>
+                    </tr>
+                    <tr>
+                        <td>Summer 2018</td>
+                        <td>National Bank of Greece</td>
+                        <td>Internship</td>
+                        <td>Data Science Intern</td>
+                    </tr>
+                    <tr>
+                        <td>2014-2018</td>
+                        <td>Athens University of Economics and Business</td>
+                        <td>B.Sc. Statistics</td>
+                        <td>Uni Student</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section>
+                <h2 class="intro-title">Contact & social</h2>
+                <p>Looking to get in touch? You can find me at<p/>
+                <ul class="intro-description">
+                    <li>Github: <a href="https://github.com/tzal3x">tzal3x</a></li>
+                    <li>LinkedIn: <a href="https://www.linkedin.com/in/alexandros-tzimas-247b0a15a/">Alexandros
+                        Tzimas</a></li>
+                    <li style="display: flex; flex-direction: row; gap: 8px">Email: <a onclick="sendEmail();"
+                                                                                       style="cursor: pointer">
+                        tzalex@outlook.com.gr</a></li>
+                </ul>
+            </section>
+        </div>
+    </div>
+    <footer>
+        <p>
+            &copy; Alex Tzimas 2024
+        </p>
+    </footer>
+</div>
+</body>
+</html>
