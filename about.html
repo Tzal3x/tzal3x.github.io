@@ -7,6 +7,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+<script>
+    function sendEmail() {
+        window.location = "mailto:tzalex@outlook.com.gr";
+    }
+</script>
 <body>
 <div class="root"
      style="
@@ -51,21 +56,54 @@
             </section>
             <section>
                 <h2 class="intro-title">Education</h2>
-                <p class="intro-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec nunc
-                </p>
+                <table>
+                    <caption>
+                        Traditional colors of Japan
+                    </caption>
+                    <tfoot>
+                    <tr>
+                        <th colspan="5"><a href="https://en.wikipedia.org/wiki/Traditional_colors_of_Japan"
+                                           target="_blank">Download CV</a></th>
+                    </tr>
+                    </tfoot>
+                    <tbody>
+                    </tbody>
+                    <thead>
+                    <tr>
+                        <th>Japanese name</th>
+                        <th>Romanized</th>
+                        <th>English translation</th>
+                        <th>RGB</th>
+                        <th>Hex triplet</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>一斤染</td>
+                        <td>Ikkonzome</td>
+                        <td>One kin (0.6&nbsp;kg (1.3&nbsp;lb)) dye</td>
+                        <td>240,143,144</td>
+                        <td>#F08F90</td>
+                    </tr>
+                    </tbody>
+                </table>
             </section>
             <section>
-                <h2 class="intro-title">Contact Information</h2>
-                <p class="intro-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec nunc
-                </p>
+                <h2 class="intro-title">Contact & media</h2>
+                <ul class="intro-description">
+                    <li>Github: <a href="https://github.com/tzal3x">tzal3x</a></li>
+                    <li>LinkedIn: <a href="https://www.linkedin.com/in/alexandros-tzimas-247b0a15a/">Alexandros
+                        Tzimas</a></li>
+                    <li style="display: flex; flex-direction: row; gap: 8px">Email: <a onclick="sendEmail();"
+                                                                                       style="cursor: pointer">
+                        tzalex@outlook.com.gr</a></li>
+                </ul>
             </section>
         </div>
     </div>
     <footer>
         <p>
-            &copy; Lorem Ipsum
+            &copy; Alex Tzimas 2024
         </p>
     </footer>
 </div>
