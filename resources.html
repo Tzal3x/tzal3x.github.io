@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Alex Tzimas | Personal Website</title>
+    <link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.4/dist/terminal.min.css"/>
+    <link rel="icon" href="programming-code-signs.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<script>
+    function sendEmail() {
+        window.location = "mailto:tzalex@outlook.com.gr";
+    }
+</script>
+<body>
+<div class="root"
+     style="
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+        padding: 20px;
+    ">
+    <header>
+        <h1 class="terminal-prompt">Alex Tzimas</h1>
+    </header>
+    <div style="width: 100%; max-width: 800px;">
+        <nav>
+            <ul style="display: flex; flex-direction: row; justify-content: space-evenly; gap: 24px; flex-wrap: wrap">
+                <!-- TODO - include CV too! -->
+                <li><a href="./index.html">Home</a></li>
+
+                <li><a href="./about.html">About Me</a></li>
+
+                <!-- TODO -->
+                <li><a href="./resources.html">Resources & Good reads</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="sections-grid"
+         style="
+            display: grid;
+            grid-template-rows: auto;
+            grid-gap: 20px;
+            width: 100%;
+            max-width: 800px;
+            margin-top: 20px;
+            padding: 20px;">
+        <div class="wrapper">
+            <section>
+                <h2 class="intro-title">Favourite resources</h2>
+                <p>
+                    These are some of my favourite resources that I use frequently,
+                    but also some good reads that I've found and revisit from time to time.
+                    They contain not only informative, but also entertaining material.
+                </p>
+                <ol>
+                    <li>
+                        Paul Graham's <a href="http://paulgraham.com/articles.html">Essays</a>.
+                        Especially the <a href="https://paulgraham.com/selfindulgence.html">"how to lose time and money"</a>
+                        was an eye-opener for me.
+                    </li>
+                </ol>
+            </section>
+        </div>
+    </div>
+    <footer>
+        <p>
+            &copy; Alex Tzimas 2024
+        </p>
+    </footer>
+</div>
+</body>
+</html>
