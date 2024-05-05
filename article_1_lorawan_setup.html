@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Alex Tzimas | Personal Website</title>
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/terminal.css@0.7.4/dist/terminal.min.css"
+        />
+        <link rel="icon" href="favicon.svg" />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <script>
+        function sendEmail() {
+            window.location = "mailto:tzalex@outlook.com.gr";
+        }
+    </script>
+    <body>
+        <div
+            class="root"
+            style="
+                display: flex;
+                justify-content: flex-start;
+                flex-direction: column;
+                align-items: center;
+                height: 100vh;
+                padding: 20px;
+            "
+        >
+            <header>
+                <h1 class="terminal-prompt">Alex Tzimas</h1>
+            </header>
+            <div style="width: 100%; max-width: 800px">
+                <nav>
+                    <ul
+                        style="
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-evenly;
+                            gap: 24px;
+                            flex-wrap: wrap;
+                        "
+                    >
+                        <!-- TODO - include CV too! -->
+                        <li><a href="./index.html">Home</a></li>
+
+                        <li><a href="./about.html">About Me</a></li>
+
+                        <!-- TODO -->
+                        <li>
+                            <a href="./resources.html"
+                                >Resources & Good reads</a
+                            >
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div
+                style="70ch;
+                width: 100%;
+                max-width: 800px;
+                margin-top: 20px;
+                padding: 20px;
+              line-height: 1.75;"
+            >
+                <h2 style="text-align: center">
+                    A LoRaWAN setup tale of spring 2024
+                </h2>
+                <p>
+                    Late of autumn 2024, year of the dragon, company off-site. While
+                    scratching our heads to get an idea to implement during a
+                    hackathon, a colleague of mine introduced me to the world of
+                    LoRa and LoRaWAN.
+                    <br />
+                    For those new to IoT (like me), here is TL;DR to save you
+                    some clicks:
+
+                    <blockquote>
+                        <b>LoRa</b> is the radio signal that carries the data - i.e. a physical layer.
+                        <br />
+                        <b>LoRaWAN</b> is the communication protocol that defines how that data
+                        is sent across the network - i.e. a transport layer.
+                    </blockquote>
+
+                    We got so excited that my jet lag vanished. We ordered the
+                    equipment and waited for it to be delivered.
+                    And we waited... We waited... until no time remained, so we
+                    dropped the idea and continued working on something else.
+                    The so-anticipated harware arrived the last day of the hackathon,
+                    which was obviously too late. We decided to get the equipment back to our
+                    home-offices and start working on it when our capacity allowed it.
+                    </p>
+            </div>
+
+            <footer>
+                <p>&copy; Alex Tzimas 2024</p>
+            </footer>
+        </div>
+    </body>
+</html>
