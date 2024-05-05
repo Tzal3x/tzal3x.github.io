@@ -67,6 +67,7 @@
                     A LoRaWAN setup tale of spring 2024
                 </h2>
                 <p>
+                <h3> Prolog </h3>
                     Late of autumn 2024, year of the dragon, company off-site. While
                     scratching our heads to get an idea to implement during a
                     hackathon, a colleague of mine introduced me to the world of
@@ -82,16 +83,58 @@
                         is sent across the network - i.e. a transport layer.
                     </blockquote>
 
-                    We got so excited that my jet lag vanished. We ordered the
-                    equipment and waited for it to be delivered.
+                    The idea was simple, yet fresh: make a PoC to prove that it's possible
+                    to make blockchain transactions over a LoRaWAN network.
+                    <br />
+                    The solution would consist of two steps:
+                    <ol>
+                        <li> Setup a simple LoRaWAN network with an end-node and gateway. </li>
+                        <li> Create a flow of creating, signing and executing a transaction to the blockchain. </li>
+                    </ol>
+                    We got so excited that my jet lag vanished, but  <a href="https://en.wikipedia.org/wiki/Murphy%27s_law">Murphy's law</a>
+                    did us dirty: <i>"Anything that can go wrong will go wrong."</i>
+                    <br/>
+                    We ordered the equipment and waited for it to be delivered.
                     And we waited... We waited... until no time remained, so we
                     dropped the idea and continued working on something else.
                     The so-anticipated harware arrived the last day of the hackathon,
                     which was obviously too late. We decided to get the equipment back to our
                     home-offices and start working on it when our capacity allowed it.
                     </p>
-            </div>
+                    The offsite ended, I returned to Athens, and got back to my projects at the time which demanded a lot of our time
+                    and there was no space for any experimentation.
+                    I still had an itch though. Something that revolved around my mind and I would constantly get back to when
+                    daydreaming about project ideas.
+                    What if I made the first steps of the implementation?
+                    I had a hard time seeing all those goodies just laying around
+                    on the shelf. So I decided to give it a go.
+                    How hard could it be? I just wanted to set up a single-node network plus send
+                    the hex encoded bytecode of a transaction. "Piece of cake!". "Low hanging fruit!"
+                    And other deceptions. I would soon be very surprised.
+                  <br/>
+                  <br/>
+                  <h3> Equipment </h3>
+                    Let's start from the equipment: I was supplied with
+                    <ul>
+                        <li> (2) <a href="https://www.raspberrypi.com/products/raspberry-pi-4-model-b/">Raspberry Pis 4b</a>
+                        <li> (1) <a href="https://docs.rakwireless.com/Product-Categories/WisLink/RAK2245-Pi-HAT/Overview/#product-description">RAK2245 Pi HAT WisLink LPWAN Concentrator</a>
+                        <li> (1) <a href="https://www.adafruit.com/product/3178">Adafruit Feather M0 RFM95 LoRa Radio</a>
+                        <li> (1) <a href="https://www.adafruit.com/product/4074">Adafruit LoRa Radio Bonnet with OLED - RFM95W</a>
+                        <li> Some other peripherals like TX/TR and GPS antennas.
+                    </ul>
+                    The RAK2245 HAT could be added on top of a Raspberry Pi 4b to create the gateway.
 
+                    Then, to create an end node I could either setup it up using the feather-RFM95 (standalone) or
+                    attach the RFM95W bonnet on top of a raspberry pi to create another one.
+
+                    The RFM95W bonnet could not fit on top of a Raspberrypi 4b because the headers of the board
+                    would mismatch the board. So I had to order an additional Raspberrypi zero wh as shown in the
+                    adafruit's setup guide.
+
+                    <br/>
+                    <br/>
+                    And the LoRa odyssey begins!
+            </div>
             <footer>
                 <p>&copy; Alex Tzimas 2024</p>
             </footer>
