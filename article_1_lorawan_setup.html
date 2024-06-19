@@ -230,6 +230,47 @@ Version: 5.0.1;
                     there was a file being edited called <code>global_conf.json</code>.
                     When I switched the value from <code>/dev/ttyAMA0</code> to <code>/dev/serial0</code>, which actually
                     existed in my machine, it worked.
+                    <br/>
+                    <br/>
+                    <h3>End node setup</h3>
+                    The gateway was up and running, so it was time to set up the end node.
+                    Starting from the adafruit RFM95W bonnet, I connected it to a Raspberry Pi Zero WH.
+                    H stands for header, which means that the board comes with the GPIO pins already
+                    soldered, minimizing the risk to damage my boards with my
+                    inexperienced hands.
+                    <br/>
+                    <br/>
+                    Next step was to make sure that the bonnet was recognized by the Raspberry Pi.
+                    This was done by following the <a href="https://learn.adafruit.com/lora-and-lorawan-radio-for-raspberry-pi/rfm9x-raspberry-pi-setup">adafruit's setup instructions</a>
+                    which comprised of installing CircuitPython Libraries and testing the connectivity
+                    (not its' capability to transmit) of the bonnet with a `rfm9x_check.py` script,
+                    in combination with installing <a href="https://learn.adafruit.com/circuitpython-on-raspberrypi-linux/installing-circuitpython-on-raspberry-pi#automated-install-3081632">blinka</a>.
+                    It worked fine (so far!), with the OLED being lit up and displaying
+                    the "Ada", "Fruit", and "Radio" for each button pressed respectively.
+                    <br/>
+                    Time to transmit some data - or not?
+                    <br/>
+                    Looks like adafruit's library is <a href="https://learn.adafruit.com/lora-and-lorawan-radio-for-raspberry-pi/sending-data-over-lorawan">not compatible with the TTN's v3 stack anymore</a>.
+                    Bummer.
+                    <br/>
+                    Before reaching a deadend, my first approach was to look into GitHub and discover
+                    if there are some open-source libraries from independent programmers that could help me out.
+                    In my search for salvation, I found <a href="https://github.com/BNNorman/CircuitPython-LoRaWAN/blob/main/Docs/QuickStart.md">BNNorman/CircuitPython-LoRaWAN</a>
+                    which was made for microcontrollers which run Circuit Python.
+                    <br/>
+                    My raspberry pi zero can’t run circuit python, it's a single board computer - not a microcontroller.
+                    As an alternative I used the `adafruit blinka` library which provides an API to other
+                    hardware such as single board computers. But this API was very limited and deprecated, resulting to errors.
+                    I tried to migrate the library to the best of my abilities, but I was not able to make it work.
+                    The changes I had to make were too many, and I still was not able to make it work.
+
+                    <br/>
+                    <br/>
+
+                    <!-- TODO: Approach 2 (RFM9x m0) -->
+                    At this point I had one board left in my disposal: an adafruit feather RFM9x m0.
+                    This is a microcontroller, but can’t run circuit python - it would be convenient because I could use the CircuitPython-LoRaWAN codebase from approach 1.
+                    ...
             </div>
             <footer>
                 <p>&copy; Alex Tzimas 2024</p>
