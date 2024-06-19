@@ -225,7 +225,7 @@ Version: 5.0.1;
                     Updated the files, rebooted, logged in the TTN console and... <b style="color: red;">no GPS signal!</b> <br/>
 
                     That was an easy fix though. The output from journalctl indicated that there was no such
-                    <code>/dev/ttyAMA0</code>, which I confirmed it using <code>ls</code>.
+                    <code>/dev/ttyAMA0</code>, which I confirmed it using <code>ls /dev/</code>.
                     Repeating the <code>gateway-config</code> process, I saw that
                     there was a file being edited called <code>global_conf.json</code>.
                     When I switched the value from <code>/dev/ttyAMA0</code> to <code>/dev/serial0</code>, which actually
