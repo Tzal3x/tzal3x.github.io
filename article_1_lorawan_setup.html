@@ -286,8 +286,50 @@ Version: 5.0.1;
                     clocked at 48 MHz and at 3.3V logic, the same one used in the new Arduino Zero.
                     Running circuit python would be convenient because I could use the CircuitPython-LoRaWAN codebase from approach 1, but
                     no such luck.
-                    ...
+
+                    In the end, I succumbed to the fact that an Adafruit product would not be able to
+                    connect to the TTN v3 stack, so I decided to start from scratch and research
+                    the TTN v3 stack's <a href="https://www.thethingsindustries.com/docs/devices/models/">recommended devices</a >. I decided to use a
+                    <a href="https://www.thethingsnetwork.org/device-repository/devices/the-things-products/the-things-uno/">The Things Uno</a>
+                    board, which is based on the Arduino Leonardo with an added Microchip LoRaWAN® module.
+                    It is fully compatible with the Arduino IDE, so that I could experiment with it.
+
+                    <br/>
+                    <br/>
+
+                    I patiently waited for the board to arrive, and when it did, I started immediately, following
+                    the instructions of the <a href="https://www.thethingsnetwork.org/device-repository/devices/the-things-products/the-things-uno/">setup guide</a >
+                    word by word. I connected the board to the computer, booted the gateway, and started the Arduino IDE.
+                    I copied the code from the guide, and uploaded it to the board. The code was simple, and was supposed to transmit
+                    the status of the onboard led to the gateway. I uploaded the code, and waited for the results.
+                    If you have read the previous paragraphs, you would have noticed a pattern. And that pattern
+                    repeated itself once again: Even though the board was transmitting successfully, the gateway would not receive anything.
+                    <strong>The TTN console was empty!</strong> (╯°□°)╯︵ ┻━┻
+
+                    <br/>
+                    <br/>
+
+                    Being frustrated I decided to start walking back and forth in my room, holding the laptop and the board
+                    in my hands, trying to figure out what was wrong.
+                    I was about to give up, when I though about some comments I read in the TTN forum about distance and gateway
+                    to end node visibility. Even though I was in the same room already and hypothetically close enough,
+                    I decided to move the board closer to the gateway, around 4 meters from it,
+                    with direct visibility, not a single chair in between this time and ... voila!
+                    <br/>
+                    The gateway started receiving some led states!
+                    <br/>
+
+                    Finally I had a complete setup!
+
+                    <br/>
+                    <br/>
+
+                    The next step was to setup a pipeline that a webhook application would listen to the TTN v3 stack and
+                    make move calls to a Sui smart contract. But that's a story for another post!
+
             </div>
+            <br/>
+            <br/>
             <footer>
                 <p>&copy; Alex Tzimas 2024</p>
             </footer>
