@@ -1,89 +1,115 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-    <title>Alex Tzimas | Personal Website</title>
-    <link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.4/dist/terminal.min.css"/>
-    <link rel="icon" href="favicon.svg">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-<div class="root"
-     style="
-        display: flex;
-        justify-content: flex-start;
-        flex-direction: column;
-        align-items: center;
-        height: 100vh;
-        padding: 20px;
-    ">
-    <header>
-        <h1 class="terminal-prompt">Alex Tzimas</h1>
-    </header>
-    <div style="width: 100%; max-width: 800px">
-        <nav>
-            <ul style="display: flex; flex-direction: row; justify-content: space-evenly; gap: 24px; flex-wrap: wrap">
-                <!-- TODO - include CV too! -->
-                <li><a href="./index.html">Home</a></li>
+    <head>
+        <title>Alex Tzimas | Personal Website</title>
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/terminal.css@0.7.4/dist/terminal.min.css"
+        />
+        <link rel="icon" href="favicon.svg" />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <body>
+        <div
+            class="root"
+            style="
+                display: flex;
+                justify-content: flex-start;
+                flex-direction: column;
+                align-items: center;
+                height: 100vh;
+                padding: 20px;
+            "
+        >
+            <header>
+                <h1 class="terminal-prompt">Alex Tzimas</h1>
+            </header>
+            <div style="width: 100%; max-width: 800px">
+                <nav>
+                    <ul
+                        style="
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-evenly;
+                            gap: 24px;
+                            flex-wrap: wrap;
+                        "
+                    >
+                        <!-- TODO - include CV too! -->
+                        <li><a href="./index.html">Home</a></li>
 
-                <li><a href="./about.html">About Me</a></li>
+                        <li><a href="./about.html">About Me</a></li>
 
-                <!-- TODO -->
-                <li><a href="./resources.html">Resources & Good reads</a></li>
-            </ul>
-        </nav>
-    </div>
-    <div class="sections-grid"
-         style="
-            display: grid;
-            grid-template-rows: auto;
-            grid-gap: 20px;
-            width: 100%;
-            max-width: 800px;
-            margin-top: 20px;
-            padding: 20px;">
-        <div class="wrapper">
-            <section>
-                <h2 class="intro-title">Intro</h2>
-                <p class="intro-description">
-                    Welcome to my personal website!
-                    I am a software engineer based in Athens, Greece with a passion for books,
-                    frugal software, and a love for the <a href="https://en.wikipedia.org/wiki/Slow_movement_(culture)#:~:text=%22a%20cultural%20revolution%20against%20the,rather%20than%20just%20counting%20them.">slow movement</a>.
-
-                    This is the place where I do my shameless self-promo and
-                    write articles for stuff that I consider interesting
-                    (and hopefully you will too).
-                </p>
-            </section>
-        </div>
-        <div class="wrapper">
-            <section>
-                <h2 class="website-title">Articles</h2>
-                <p class="website-description">
-                    Here you will find some of my writings.
-                    In the future, I will expand this section with more articles
-                    as long as time allows and motivation persists.
-                </p>
-                <div class="terminal-timeline">
-                    <div class="terminal-card" style="cursor: not-allowed" onclick="location.href='#';">
-                        <header>
-                            🚧 (WIP) Apr. 2024: <i>"A LoRaWAN setup tale of spring 2024"</i>
-                        </header>
-                        <div>
-                            A struggling story of setting up a simple LoRaWAN network
-                            with a gateway and end nodes.
-                            How hard can it be?
-                        </div>
-                    </div>
+                        <!-- TODO -->
+                        <li>
+                            <a href="./resources.html"
+                                >Resources & Good reads</a
+                            >
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div
+                class="sections-grid"
+                style="
+                    display: grid;
+                    grid-template-rows: auto;
+                    grid-gap: 20px;
+                    width: 100%;
+                    max-width: 800px;
+                    margin-top: 20px;
+                    padding: 20px;
+                "
+            >
+                <div class="wrapper">
+                    <section>
+                        <h2 class="intro-title">Intro</h2>
+                        <p class="intro-description">
+                            Welcome to my personal website! I am a software
+                            engineer based in Athens, Greece with a passion for
+                            books, frugal software, and a love for the
+                            <a
+                                href="https://en.wikipedia.org/wiki/Slow_movement_(culture)#:~:text=%22a%20cultural%20revolution%20against%20the,rather%20than%20just%20counting%20them."
+                                >slow movement</a
+                            >. This is the place where I do my shameless
+                            self-promo and write articles for stuff that I
+                            consider interesting (and hopefully you will too).
+                        </p>
+                    </section>
                 </div>
-            </section>
+                <div class="wrapper">
+                    <section>
+                        <h2 class="website-title">Articles</h2>
+                        <p class="website-description">
+                            Here you will find some of my writings. In the
+                            future, I will expand this section with more
+                            articles as long as time allows and motivation
+                            persists.
+                        </p>
+                        <div class="terminal-timeline">
+                            <div
+                                class="terminal-card"
+                                style="cursor: not-allowed"
+                                onclick="location.href='#';"
+                            >
+                                <header>
+                                    🚧 (WIP) Apr. 2024:
+                                    <i>"A LoRaWAN setup tale of spring 2024"</i>
+                                </header>
+                                <div>
+                                    A struggling story of setting up a simple
+                                    LoRaWAN network with a gateway and end
+                                    nodes. How hard can it be?
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <footer>
+                <p>&copy; Alex Tzimas 2024</p>
+            </footer>
         </div>
-    </div>
-    <footer>
-        <p>
-            &copy; Alex Tzimas 2024
-        </p>
-    </footer>
-</div>
-</body>
+    </body>
 </html>

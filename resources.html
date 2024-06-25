@@ -1,38 +1,50 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-    <title>Alex Tzimas | Personal Website</title>
-    <link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.4/dist/terminal.min.css"/>
-    <link rel="icon" href="favicon.svg">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<script>
-    function sendEmail() {
-        window.location = "mailto:tzalex@outlook.com.gr";
-    }
-</script>
-<body>
-<div class="root"
-     style="
-        display: flex;
-        justify-content: flex-start;
-        flex-direction: column;
-        align-items: center;
-        height: 100vh;
-        padding: 20px;
-    ">
-    <header>
-        <h1 class="terminal-prompt">Alex Tzimas</h1>
-    </header>
-    <div style="width: 100%; max-width: 800px;">
-        <nav>
-            <ul style="display: flex; flex-direction: row; justify-content: space-evenly; gap: 24px; flex-wrap: wrap">
-                <!-- TODO - include CV too! -->
-                <li><a href="./index.html">Home</a></li>
+    <head>
+        <title>Alex Tzimas | Personal Website</title>
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/terminal.css@0.7.4/dist/terminal.min.css"
+        />
+        <link rel="icon" href="favicon.svg" />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <script>
+        function sendEmail() {
+            window.location = "mailto:tzalex@outlook.com.gr";
+        }
+    </script>
+    <body>
+        <div
+            class="root"
+            style="
+                display: flex;
+                justify-content: flex-start;
+                flex-direction: column;
+                align-items: center;
+                height: 100vh;
+                padding: 20px;
+            "
+        >
+            <header>
+                <h1 class="terminal-prompt">Alex Tzimas</h1>
+            </header>
+            <div style="width: 100%; max-width: 800px">
+                <nav>
+                    <ul
+                        style="
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-evenly;
+                            gap: 24px;
+                            flex-wrap: wrap;
+                        "
+                    >
+                        <!-- TODO - include CV too! -->
+                        <li><a href="./index.html">Home</a></li>
 
-                <li><a href="./about.html">About Me</a></li>
-
+                        <li><a href="./about.html">About Me</a></li>
                 <!-- TODO -->
                 <li><a href="./resources.html">Resources & Good reads</a></li>
             </ul>
@@ -90,12 +102,5 @@
                 </ol>
             </section>
         </div>
-    </div>
-    <footer>
-        <p>
-            &copy; Alex Tzimas 2024
-        </p>
-    </footer>
-</div>
-</body>
+    </body>
 </html>

@@ -1,0 +1,338 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Alex Tzimas | Personal Website</title>
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/terminal.css@0.7.4/dist/terminal.min.css"
+        />
+        <link rel="icon" href="favicon.svg" />
+        <link rel="stylesheet" href="style.css">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+        function sendEmail() {
+            window.location = "mailto:tzalex@outlook.com.gr";
+        }
+    </script>
+    <body>
+        <div
+            class="root"
+            style="
+                display: flex;
+                justify-content: flex-start;
+                flex-direction: column;
+                align-items: center;
+                height: 100vh;
+                padding: 20px;
+            "
+        >
+            <header>
+                <h1 class="terminal-prompt">Alex Tzimas</h1>
+            </header>
+            <div style="width: 100%; max-width: 800px">
+                <nav>
+                    <ul
+                        style="
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-evenly;
+                            gap: 24px;
+                            flex-wrap: wrap;
+                        "
+                    >
+                        <!-- TODO - include CV too! -->
+                        <li><a href="./index.html">Home</a></li>
+
+                        <li><a href="./about.html">About Me</a></li>
+
+                        <!-- TODO -->
+                        <li>
+                            <a href="./resources.html"
+                                >Resources & Good reads</a
+                            >
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div
+                style="70ch;
+                width: 100%;
+                max-width: 800px;
+                margin-top: 20px;
+                padding: 20px;
+              line-height: 1.75;"
+            >
+                <h2 style="text-align: center">
+                    A LoRaWAN setup tale of spring 2024
+                </h2>
+                <p>
+                <h3> Prolog </h3>
+                    Late of autumn 2024, year of the dragon, company off-site. While
+                    scratching our heads to get an idea to implement during a
+                    hackathon, a colleague of mine introduced me to the world of
+                    LoRa and LoRaWAN.
+                    <br>
+                    So what is this about? IoT devices need a way to exchange information, by forming a *local* network.
+                    In our daily lives, we use Wi-Fi to connect our devices in our LAN.
+                    This is expensive, both in terms of energy and computation power.
+                    LoRaWAN networks like <a href="https://www.thethingsnetwork.org/">The Things Network</a>, solve this issue using LoRa.
+                    <br />
+                    For those new to IoT you might find these terms confusing, like I did. To save you some clicks:
+
+                    <blockquote>
+                        <b>LoRa</b> is the radio signal that carries the data - i.e. a physical layer.
+                        <br />
+                        <b>LoRaWAN</b> is the communication protocol that defines how that data
+                        is sent across the network - i.e. a transport layer.
+                    </blockquote>
+
+                    The idea was simple, yet fresh: make a PoC (proof of concept) to prove that it's possible
+                    to make blockchain transactions over a LoRaWAN network.
+                    <br />
+                    The solution would consist of two steps:
+                    <ol>
+                        <li> Setup a simple LoRaWAN network with an end-node and gateway. </li>
+                        <li> Create a flow of creating, signing and executing a transaction to the blockchain. </li>
+                    </ol>
+                    We got so excited that my jet lag vanished, but  <a href="https://en.wikipedia.org/wiki/Murphy%27s_law">Murphy's law</a>
+                    did us dirty: <i>"Anything that can go wrong will go wrong."</i>
+                    <br/>
+                    We ordered the equipment and waited for it to be delivered.
+                    And we waited... We waited... until no time remained, so we
+                    dropped the idea and continued working on something else.
+                    The so-anticipated hardware arrived the last day of the hackathon,
+                    which was obviously too late. We decided to get the equipment back to our
+                    home-offices and start working on it when our capacity allowed it.
+                    </p>
+                    The offsite ended, I returned to Athens, and got back to my projects at the time which demanded a lot of our time
+                    and there was no space for any experimentation.
+                    I still had an itch though. Something that revolved around my mind and I would constantly get back to when
+                    daydreaming about project ideas.
+                    <blockquote>What if I made the first steps of the implementation?</blockquote>
+                    I had a hard time seeing all those goodies just laying around
+                    on the shelf. So I decided to give it a go.
+                    How hard could it be? I just wanted to set up a single-node network plus send
+                    the hex encoded bytecode of a transaction. "Piece of cake!". "Low hanging fruit!"
+                    And other deceptions. Turns out that I would be thrown for a loop!
+                  <br/>
+                  <br/>
+                  <h3> Equipment </h3>
+                    Let's start from the equipment: I was supplied with
+                    <ul>
+                        <li> (2) <a href="https://www.raspberrypi.com/products/raspberry-pi-4-model-b/">Raspberry Pis 4b</a>
+                        <li> (1) <a href="https://docs.rakwireless.com/Product-Categories/WisLink/RAK2245-Pi-HAT/Overview/#product-description">RAK2245 Pi HAT WisLink LPWAN Concentrator</a>
+                        <li> (1) <a href="https://www.adafruit.com/product/3178">Adafruit Feather M0 RFM95 LoRa Radio</a>
+                        <li> (1) <a href="https://www.adafruit.com/product/4074">Adafruit LoRa Radio Bonnet with OLED - RFM95W</a>
+                        <li> Some other peripherals like TX/TR and GPS antennas.
+                    </ul>
+                    The RAK2245 HAT could be added on top of a Raspberry Pi 4b to create the gateway.
+
+                    Then, to create an end node I could either setup it up using the feather-RFM95 (standalone) or
+                    attach the RFM95W bonnet on top of a raspberry pi to create another one.
+
+                    The RFM95W bonnet could not fit on top of a Raspberrypi 4b because the headers of the board
+                    would mismatch the board. So I had to order an additional Raspberrypi zero wh as shown in the
+                    adafruit's setup guide.
+
+                    <br/>
+                    <br/>
+                    And the LoRaWAN Odyssey begins!
+
+                    <br/>
+                    <br/>
+                    <h3> Gateway setup </h3>
+                    To test if a network works, you first need to start from the receiver.
+                    In my case, I would first need to set up the LoRaWAN gateway.
+                    If the gateway would work as expected, i.e. show up in The Things Network console and reply to status messages,
+                    then that would enable me to check if the end nodes work too.
+                    <br/>
+                    <br/>
+                    The first step was to assemble the gateway parts. Got one Raspberry Pi 4B and attached on top of it
+                    the RAK2245 HAT. Connected the antennae both for signal accumulation and gps and that was it.
+                    <br/>
+                    Then for the software part, I would have to follow the official
+                    <a href="https://docs.rakwireless.com/Product-Categories/WisLink/RAK2245-Pi-HAT/Quickstart/">
+                    quickstart guide of RakWireless</a>. The steps would be to install a headless <a href="https://www.raspbian.org/"> Raspbian OS</a>
+                    to the Raspberry Pi, then ssh into it and install the RAK2245 HAT's software by cloning the
+                    repo and running the install script. <br/>
+                    So far so good, <i>or so I thought</i>! Having followed the instruction steps, <b style="color: red;">the gateway doesn't show up
+                    in the TTN console</b>.
+                    <br/>Time for some troubleshooting.
+                    I open up the good old <code>journalctl</code> and inspect my <code>ttn-gateway</code> service:
+                    <pre><code class="language-js hljs shell">
+$ <span class="hljs-keyword">sudo</span> journalctl -u ttn-gateway
+<span class="hljs-string">rak-gateway ttn-gateway[2890]: WARNING: [main] impossible to open /dev/ttyAMA0 for GPS sync (check permissions)
+(...)
+rak-gateway ttn-gateway[2890]: ERROR: [main] failed to start the concentrator</span>
+                    </code></pre>
+                    Seems that the concentrator was not able to start due to a serial line error.</br>
+                    <b>Pause</b>. To understand what needs to be checked next, I would
+                    have to find where the pins are defined in the <a href="https://github.com/fguiet/rak2245-lora-gateway">rak's repo</a>.
+                    Searching into the files I found out that this is done inside the
+                    <code>/opt/ttn-gateway/packet_forwarder/lora_pkt_fwd/start.sh</code>
+                    <br/ >Let's dive deeper:
+                    <pre><code class="language-js hljs shell">
+<span class="hljs-comment"># Stop the automatic start of the service.</span>
+sudo systemctl stop ttn-gateway.service
+
+<span class="hljs-comment"># Check out the output of the packet forwarder</span>
+sudo bash -x /opt/ttn-gateway/packet_forwarder/lora_pkt_fwd/start.sh
+                    <span class="hljs-string">
++ SX1301_RESET_BCM_PIN=22
++ echo 22
+start.sh: line 6: echo: write error: Invalid argument
++ echo out
+start.sh: line 7: <b>/sys/class/gpio/gpio22/direction: No such file or directory</b>
++ echo 0
+start.sh: line 8: /sys/class/gpio/gpio22/value: No such file or directory
++ sleep 0.1
++ echo 1
+start.sh: line 10: /sys/class/gpio/gpio22/value: No such file or directory
++ sleep 0.1
++ echo 0
+start.sh: line 12: /sys/class/gpio/gpio22/value: No such file or directory
++ sleep 0.1
++ echo 22
+start.sh: line 14: echo: write error: Invalid argument
++ ./set_eui.sh
++ sleep 0.2
++ sleep 0.5
++ ./lora_pkt_fwd
+*** Beacon Packet Forwarder for Lora Gateway ***
+Version: 4.0.1
+*** Lora concentrator HAL library version info ***
+Version: 5.0.1;
+***
+                    </span>
+                    </code></pre>
+                    So the culript to the problem seems to be the that the GPIO <b>reset</b>
+                    pin is set to 22 incorrectly, leading to a misalignment between the two boards.<br/>
+                    To find the correct value of the Raspberry Pi's GPIO pin, I would need to check the
+                    <a href="https://dl-docs.rakwireless.com/api/render/?emulateScreenMedia=false&pdf.format=legal&url=https%3A%2F%2Fdocs.rakwireless.com%2FProduct-Categories%2FWisLink%2FRAK2245-Pi-HAT%2FDatasheet%2F">official
+                    documentation for RAK2245</a>. Looking at page 5, the GPIO pin of Raspberry Pi that should be used is  GPIO 17:
+                    <br />
+                    <figure>
+                        <img src="images/rak2245-docs-screenshot-page-5.png" alt="RAK2245 screenshot of docs page 5"/>
+                            <figcaption>Screenshot from RAK2245's documentation, page 5.</figcaption>
+                    </figure>
+                    <br/>
+                    The fix is simple! Just change the value inside <code>/opt/ttn-gateway/packet_forwarder/lora_pkt_fwd/start.sh</code>
+                    to <code>SX1301_RESET_BCM_PIN=17</code>. <br />
+                    <br/>
+                    Updated the files, rebooted, logged in the TTN console and... <b style="color: red;">no GPS signal!</b> <br/>
+
+                    That was an easy fix though. The output from journalctl indicated that there was no such
+                    <code>/dev/ttyAMA0</code>, which I confirmed it using <code>ls /dev/</code>.
+                    Repeating the <code>gateway-config</code> process, I saw that
+                    there was a file being edited called <code>global_conf.json</code>.
+                    When I switched the value from <code>/dev/ttyAMA0</code> to <code>/dev/serial0</code>, which actually
+                    existed in my machine, it worked.
+                    <br/>
+                    <br/>
+                    <h3>End node setup</h3>
+                    The gateway was up and running, so it was time to set up the end node.
+                    Starting from the adafruit RFM95W bonnet, I connected it to a Raspberry Pi Zero WH.
+                    H stands for header, which means that the board comes with the GPIO pins already
+                    soldered, minimizing the risk to damage my boards with my
+                    inexperienced hands.
+                    <br/>
+                    <br/>
+                    Next step was to make sure that the bonnet was recognized by the Raspberry Pi.
+                    This was done by following the <a href="https://learn.adafruit.com/lora-and-lorawan-radio-for-raspberry-pi/rfm9x-raspberry-pi-setup">adafruit's setup instructions</a>
+                    which comprised of installing CircuitPython Libraries and testing the connectivity
+                    (not its' capability to transmit) of the bonnet with a `rfm9x_check.py` script,
+                    in combination with installing <a href="https://learn.adafruit.com/circuitpython-on-raspberrypi-linux/installing-circuitpython-on-raspberry-pi#automated-install-3081632">blinka</a>.
+                    It worked fine (so far!), with the OLED being lit up and displaying
+                    the "Ada", "Fruit", and "Radio" for each button pressed respectively.
+                    <br/>
+                    Time to transmit some data - or not?
+                    <br/>
+                    Looks like adafruit's library is <a href="https://learn.adafruit.com/lora-and-lorawan-radio-for-raspberry-pi/sending-data-over-lorawan" style="color: red;">not compatible with the TTN's v3 stack anymore</a>.
+
+                    <br/>
+                    <br/>
+                    Quoting adafruits' guide:
+                    <blockquote>
+                        The LoRaWAN part of this Guide is deprecated and is no longer possible!
+                        Single-channel packet forwarders no longer work after the
+                        Things Network migration to The Things Stack v3. For more information about this decision,
+                        visit: https://www.thethingsnetwork.org/forum/t/single-channel-packet-forwarders-scpf-are-deprecated-and-not-supported/31117
+                    </blockquote>
+
+                    Bummer.
+                    <br/>
+                    <br/>
+
+                    Before reaching a deadend, my first approach was to look into GitHub and discover
+                    if there are some open-source libraries from independent programmers that could help me out.
+                    In my search for salvation, I found <a href="https://github.com/BNNorman/CircuitPython-LoRaWAN/blob/main/Docs/QuickStart.md">BNNorman/CircuitPython-LoRaWAN</a>
+                    which was made for microcontrollers which run Circuit Python.
+                    <br/>
+                    My raspberry pi zero can’t run circuit python, it's a single board computer - not a microcontroller.
+                    As an alternative I used the adafruit blinka library which provides an API to other
+                    hardware such as single board computers. But this API was very limited and deprecated, resulting to errors.
+                    I tried to migrate the library to the best of my abilities, but I was not able to make it work.
+                    The changes I had to make were too many, making hard to not introduce errors.
+
+                    <br/>
+                    <br/>
+
+                    <!-- TODO: Approach 2 (RFM9x m0) -->
+                    At this point I had one board left in my disposal: an adafruit feather RFM9x m0.
+                    This is a microcontroller, but can’t run circuit python because it is based on an ATSAMD21G18 ARM Cortex M0 processor,
+                    clocked at 48 MHz and at 3.3V logic, the same one used in the new Arduino Zero.
+                    Running circuit python would be convenient because I could use the CircuitPython-LoRaWAN codebase from approach 1, but
+                    no such luck.
+
+                    In the end, I succumbed to the fact that an Adafruit product would not be able to
+                    connect to the TTN v3 stack, so I decided to start from scratch and research
+                    the TTN v3 stack's <a href="https://www.thethingsindustries.com/docs/devices/models/">recommended devices</a >. I decided to use a
+                    <a href="https://www.thethingsnetwork.org/device-repository/devices/the-things-products/the-things-uno/">The Things Uno</a>
+                    board, which is based on the Arduino Leonardo with an added Microchip LoRaWAN® module.
+                    It is fully compatible with the Arduino IDE, so that I could experiment with it.
+
+                    <br/>
+                    <br/>
+
+                    I patiently waited for the board to arrive, and when it did, I started immediately, following
+                    the instructions of the <a href="https://www.thethingsnetwork.org/device-repository/devices/the-things-products/the-things-uno/">setup guide</a >
+                    word by word. I connected the board to the computer, booted the gateway, and started the Arduino IDE.
+                    I copied the code from the guide, and uploaded it to the board. The code was simple, and was supposed to transmit
+                    the status of the onboard led to the gateway. I uploaded the code, and waited for the results.
+                    If you have read the previous paragraphs, you would have noticed a pattern. And that pattern
+                    repeated itself once again: Even though the board was transmitting successfully, the gateway would not receive anything.
+                    <strong>The TTN console was empty!</strong> (╯°□°)╯︵ ┻━┻
+
+                    <br/>
+                    <br/>
+
+                    Being frustrated I decided to start walking back and forth in my room, holding the laptop and the board
+                    in my hands, trying to figure out what was wrong.
+                    I was about to give up, when I though about some comments I read in the TTN forum about distance and gateway
+                    to end node visibility. Even though I was in the same room already and hypothetically close enough,
+                    I decided to move the board closer to the gateway, around 4 meters from it,
+                    with direct visibility, not a single chair in between this time and ... voila!
+                    <br/>
+                    The gateway started receiving some led states!
+                    <br/>
+
+                    Finally I had a complete setup!
+
+                    <br/>
+                    <br/>
+
+                    The next step was to setup a pipeline that a webhook application would listen to the TTN v3 stack and
+                    make move calls to a Sui smart contract. But that's a story for another post!
+
+            </div>
+            <br/>
+            <br/>
+            <footer>
+                <p>&copy; Alex Tzimas 2024</p>
+            </footer>
+        </div>
+    </body>
+</html>
