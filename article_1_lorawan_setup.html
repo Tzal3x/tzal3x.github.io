@@ -250,16 +250,29 @@ Version: 5.0.1;
                     <br/>
                     Time to transmit some data - or not?
                     <br/>
-                    Looks like adafruit's library is <a href="https://learn.adafruit.com/lora-and-lorawan-radio-for-raspberry-pi/sending-data-over-lorawan">not compatible with the TTN's v3 stack anymore</a>.
+                    Looks like adafruit's library is <a href="https://learn.adafruit.com/lora-and-lorawan-radio-for-raspberry-pi/sending-data-over-lorawan" style="color: red;">not compatible with the TTN's v3 stack anymore</a>.
+
+                    <br/>
+                    <br/>
+                    Quoting adafruits' guide:
+                    <blockquote>
+                        The LoRaWAN part of this Guide is deprecated and is no longer possible!
+                        Single-channel packet forwarders no longer work after the
+                        Things Network migration to The Things Stack v3. For more information about this decision,
+                        visit: https://www.thethingsnetwork.org/forum/t/single-channel-packet-forwarders-scpf-are-deprecated-and-not-supported/31117
+                    </blockquote>
+
                     Bummer.
                     <br/>
+                    <br/>
+
                     Before reaching a deadend, my first approach was to look into GitHub and discover
                     if there are some open-source libraries from independent programmers that could help me out.
                     In my search for salvation, I found <a href="https://github.com/BNNorman/CircuitPython-LoRaWAN/blob/main/Docs/QuickStart.md">BNNorman/CircuitPython-LoRaWAN</a>
                     which was made for microcontrollers which run Circuit Python.
                     <br/>
                     My raspberry pi zero can’t run circuit python, it's a single board computer - not a microcontroller.
-                    As an alternative I used the `adafruit blinka` library which provides an API to other
+                    As an alternative I used the adafruit blinka library which provides an API to other
                     hardware such as single board computers. But this API was very limited and deprecated, resulting to errors.
                     I tried to migrate the library to the best of my abilities, but I was not able to make it work.
                     The changes I had to make were too many, making hard to not introduce errors.
@@ -269,7 +282,10 @@ Version: 5.0.1;
 
                     <!-- TODO: Approach 2 (RFM9x m0) -->
                     At this point I had one board left in my disposal: an adafruit feather RFM9x m0.
-                    This is a microcontroller, but can’t run circuit python - it would be convenient because I could use the CircuitPython-LoRaWAN codebase from approach 1.
+                    This is a microcontroller, but can’t run circuit python because it is based on an ATSAMD21G18 ARM Cortex M0 processor,
+                    clocked at 48 MHz and at 3.3V logic, the same one used in the new Arduino Zero.
+                    Running circuit python would be convenient because I could use the CircuitPython-LoRaWAN codebase from approach 1, but
+                    no such luck.
                     ...
             </div>
             <footer>
