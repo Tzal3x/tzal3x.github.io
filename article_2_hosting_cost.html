@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Alex Tzimas | Personal Website</title>
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/terminal.css@0.7.4/dist/terminal.min.css"
+        />
+        <link rel="icon" href="favicon.svg" />
+        <link rel="stylesheet" href="style.css">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+        function sendEmail() {
+            window.location = "mailto:tzalex@outlook.com.gr";
+        }
+    </script>
+    <body>
+        <div
+            class="root"
+            style="
+                display: flex;
+                justify-content: flex-start;
+                flex-direction: column;
+                align-items: center;
+                height: 100vh;
+                padding: 20px;
+            "
+        >
+            <header>
+                <h1 class="terminal-prompt">Alex Tzimas</h1>
+            </header>
+            <div style="width: 100%; max-width: 800px">
+                <nav>
+                    <ul
+                        style="
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-evenly;
+                            gap: 24px;
+                            flex-wrap: wrap;
+                        "
+                    >
+                        <!-- TODO - include CV too! -->
+                        <li><a href="./index.html">Home</a></li>
+
+                        <li><a href="./about.html">About Me</a></li>
+
+                        <!-- TODO -->
+                        <li>
+                            <a href="./resources.html"
+                                >Resources & Good reads</a
+                            >
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div
+                style="70ch;
+                width: 100%;
+                max-width: 800px;
+                margin-top: 20px;
+                padding: 20px;
+              line-height: 1.75;"
+            >
+                <h2 style="text-align: center">
+                    Cutting <span style="color: red;">$350K</span>/year in hosting costs
+                </h2>
+                <h3>
+                    TL;DR
+                </h3>
+                <p>
+                   This is a short story on how I managed to reduce the estimated hosting costs of a kubernetes cluster,
+                   just before going live in production. In short, I had to resolve a memory leak issue and migrate
+                   the HTTP server framework (from <a href="https://nextjs.org/docs/pages/building-your-application/routing/api-routes">Next.js routes</a> to a <a href="https://bun.com/docs/api/http">Bun server</a>).
+                </p>
+                <h3>
+                   About the project
+                </h3>
+                <p>
+                    This story takes place during the <a href="https://academy.binance.com/en/glossary/mainnet">mainnet-launch</a> period of
+                    <a href="https://www.walrus.xyz">Walrus</a> and <a href="https://github.com/mystenLabs/walrus-sites">Walrus Sites</a>,
+                    early March 2025.
+                    <ul>
+                        <li>Walrus is a decentralized storage solution similar to Google Drive or Amazon S3 but "shards" of your files
+                        are distributed across multiple servers, thus competing with <a href="http://arweave.org">Arweave</a> and <a href="http://ipfs.tech">IPFS</a>.</li>
+                        <br>
+                        <li>Walrus Sites, is a website hosting solution with its main principle being that file resources (JS, CSS, HTML)
+                        are saved on Walrus.</li>
+                    </ul>
+                    These websites are accessed through "portals" that translate user requests into HTTP calls to Walrus.
+                    i.e., <code>https://wal.app</code> is the domain of the server portal. If you need to access your site,
+                    you would request <code>https://name-of-your-site.wal.app</code>. This way the <code>wal.app</code> portal will
+                    fetch the <code>name-of-your-site</code> resources and serve them to the end user.
+                    <br>
+                    My responsibility was to build the core features of the product but also optimize both speed 
+                    (increasing requests per second) and reduce cost.
+                    Let's explore how things turned out.
+                </p>
+                <h3>
+                    Ready, set... wait! Can we even launch?
+                </h3>
+                <p>
+                    At that time we were three weeks away from launching on mainnet. This would mean 
+                    an exponential increase in traffic.
+                    <br>
+                    We thought that we were ready until the frontend of a famous NFT airdrop was hosted to 
+                    our (at the time) live Walrus Sites testnet (staging) portal. Airdrops in general are infamous for
+                    creating traffic spikes, and this was not an exception. Our portal was flooded with requests,
+                    until it became unresponsive. Users were not very happy, neither stakeholders.
+                    <br>
+                </p>
+                <h3>
+                    The two culprits
+                </h3>
+                <p>
+                    During the post-mortem, we took a look at the charts inside of our kubernetes cluster.
+                    The results were the following:
+                </p>
+                <ol>
+                    <li>During the airdrop that lasted one day, in total we received approximately 113K requests. 
+                        At the peak of the event, we had 180 req/sec, and things started looking bad at around 100 req/sec. 
+                        We had three kubernetes pods then, which means 33 req/sec were enough to overload a single pod.
+                    </li>
+                    <br>
+                    <li>Looking at the memory usage of each container, the amount of RAM used was only increasing, which is a
+                        bad smell for memory leaks.</li>
+                </ol>
+                <p>
+                    After the incident, we made some adjustments and scaled out to 15 pods per region, which is 45 pods in total.
+                    Each kubernetes node could take about 12-16 pods, which means that we were basically able to handle 150 req/sec
+                    in each region for the time being.
+                    <br>
+                    But this was not enough. When Walrus Sites became popular, those numbers were not enough to handle future -unforgiving-
+                    airdrops. To provision the cluster in order to serve 1500 req/sec we would need to spin up 30 kubernetes nodes,
+                    <b>costing $30k per month</b>. 
+                    <br>
+                    Evidently, we should move fast and fix things. 
+                </p>
+                <h3>
+                    Solving the memory leak
+                </h3>
+                <p>
+                    First and foremost, I 
+                </p>
+                
+                <h3>
+                    So why didn't we do this from the start?
+                </h3>
+                <p>
+                </p>
+            </div>
+            <br/>
+            <br/>
+            <footer>
+                <p>&copy; Alex Tzimas 2025</p>
+            </footer>
+        </div>
+    </body>
+</html>
