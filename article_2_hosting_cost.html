@@ -215,9 +215,11 @@ function addLoggingArgsToSentry(args: { [key: string]: any }) {
 					Following these updates, we notice the following improvements:
 				</p>
 				<ol>
+					<li>During the first 12 hours after mainnet launch we received 845.31k hits.</li>
+					<li>CPU usage stable at ~ 2%, while memory usage stabilized at ~ 16-18%.</li>
 					<li>Our backend servers now could handle 3000 req/sec (compared to 1500 req/sec that we would handle initially on prod data).</li>
 					<li>Average response time dropped to 0.5sec, with p99 being under 1 second.</li>
-					<li>For each pod, using 1 core CPU & 1G RAM, our node was 16 cores & 128G RAM.
+					<li><b>Costs</b>: For each pod, using 1 core CPU & 1G RAM, our node was 16 cores & 128G RAM.
 						Using the c4-highram-16 compute engine pricing with $1.04 /hr, we averaged around $760 a month,
 						so 12 pods were about 12/16 * 760 = $570 a month (compared to $30,000 that we had initially). That is 12*($30,000-$570) = $353,160 in a year!</li>
 					<li>We experienced no downtime whatsoever, even many months after launch!</li>
