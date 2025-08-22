@@ -72,7 +72,7 @@
                     TL;DR
                 </h3>
                 <p>
-                   This is a short story on how I managed to reduce the estimated hosting costs of a kubernetes cluster,
+                   This is a short story on how we managed to reduce the estimated hosting costs of a kubernetes cluster,
                    just before going live in production. In short, I had to resolve a memory leak issue and migrate
                    the HTTP server framework (from <a href="https://nextjs.org/docs/pages/building-your-application/routing/api-routes">Next.js routes</a> to a <a href="https://bun.com/docs/api/http">Bun server</a>).
                 </p>
@@ -84,7 +84,7 @@
                     <a href="https://www.walrus.xyz">Walrus</a> and <a href="https://github.com/mystenLabs/walrus-sites">Walrus Sites</a>,
                     early March 2025.
                     <ul>
-                        <li>Walrus is a decentralized storage solution similar to Google Drive or Amazon S3 but "shards" of your files
+                        <li>Walrus is a decentralized storage solution. Think of it like Google Cloud Storage or Amazon S3 but "shards" of your files
                         are distributed across multiple servers, thus competing with <a href="http://arweave.org">Arweave</a> and <a href="http://ipfs.tech">IPFS</a>.</li>
                         <br>
                         <li>Walrus Sites, is a website hosting solution with its main principle being that file resources (JS, CSS, HTML)
@@ -95,7 +95,7 @@
                     you would request <code>https://name-of-your-site.wal.app</code>. This way the <code>wal.app</code> portal will
                     fetch the <code>name-of-your-site</code> resources and serve them to the end user.
                     <br>
-                    My responsibility was to build the core features of the product but also optimize both speed 
+                    My colleagues' responsibilities and mine were to build the core features of the product, as well as optimize both speed 
                     (increasing requests per second) and reduce cost.
                     Let's explore how things turned out.
                 </p>
@@ -125,8 +125,8 @@
                         We had three kubernetes pods then, which means 33 req/sec were enough to overload a single pod.
                     </li>
                     <br>
-                    <li>Looking at the memory usage of each container, the amount of RAM used was only increasing, which is a
-                        bad smell for memory leaks.</li>
+                    <li>Looking at the memory usage of each container, the amount of RAM used was only increasing despite the load, 
+                    	which is a bad smell for memory leaks.</li>
                 </ol>
                 <p>
                     After the incident, we made some adjustments and scaled out to 15 pods per region, which is 45 pods in total.
