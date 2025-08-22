@@ -95,7 +95,7 @@
                     you would request <code>https://name-of-your-site.wal.app</code>. This way the <code>wal.app</code> portal will
                     fetch the <code>name-of-your-site</code> resources and serve them to the end user.
                     <br>
-                    My colleagues' responsibilities and mine were to build the core features of the product, as well as optimize both speed 
+                    My colleagues' responsibilities and mine were to build the core features of the product, as well as optimize both speed
                     (increasing requests per second) and reduce cost.
                     Let's explore how things turned out.
                 </p>
@@ -103,10 +103,10 @@
                     Ready, set... wait! Can we even launch?
                 </h3>
                 <p>
-                    At that time we were three weeks away from launching on mainnet. This would mean 
+                    At that time we were three weeks away from launching on mainnet. This would mean
                     an exponential increase in traffic.
                     <br>
-                    We thought that we were ready until the frontend of a famous NFT airdrop was hosted to 
+                    We thought that we were ready until the frontend of a famous NFT airdrop was hosted to
                     our (at the time) live Walrus Sites testnet (staging) portal. Airdrops in general are infamous for
                     creating traffic spikes, and this was not an exception. Our portal was flooded with requests,
                     until it became unresponsive. Users were not very happy, neither stakeholders.
@@ -120,12 +120,12 @@
                     The results were the following:
                 </p>
                 <ol>
-                    <li>During the airdrop that lasted one day, in total we received approximately 113K requests. 
-                        At the peak of the event, we had 180 req/sec, and things started looking bad at around 100 req/sec. 
+                    <li>During the airdrop that lasted one day, in total we received approximately 113K requests.
+                        At the peak of the event, we had 180 req/sec, and things started looking bad at around 100 req/sec.
                         We had three kubernetes pods then, which means 33 req/sec were enough to overload a single pod.
                     </li>
                     <br>
-                    <li>Looking at the memory usage of each container, the amount of RAM used was only increasing despite the load, 
+                    <li>Looking at the memory usage of each container, the amount of RAM used was only increasing despite the load,
                     	which is a bad smell for memory leaks.</li>
                 </ol>
                 <p>
@@ -135,17 +135,59 @@
                     <br>
                     But this was not enough. When Walrus Sites became popular, those numbers were not enough to handle future -unforgiving-
                     airdrops. To provision the cluster in order to serve 1500 req/sec we would need to spin up 30 kubernetes nodes,
-                    <b>costing $30k per month</b>. 
+                    <b>costing $30k per month</b>.
                     <br>
-                    Evidently, we should move fast and fix things. 
+                    Evidently, we should move fast and fix things.
                 </p>
                 <h3>
                     Solving the memory leak
                 </h3>
                 <p>
-                    First and foremost, I 
+                    To fix a memory leak, you first need to understand what it is.
+                    By definition, memory leaks occur when a program allocates memory but fails to release it after use.
+                    Most of you might know this term from C or C++, since those languages don't have a <a href="https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)">garbage collector (GC)</a>.
+                    But in our case, we were using a JavaScript runtime, which does implement it.
+                    So why was it possible to have a memory leak here?
+                    <br>
+                    The fact that high-level languages have GC, is a frequent source of confusion: it can give developers the false impression that
+                    they don't need to worry about memory management.
                 </p>
-                
+
+                <p>But they do. The reason is <em>lingering references</em>. Let me explain:</p>
+
+                <p>
+                The most common GC algorithm is <a href="https://en.wikipedia.org/wiki/Tracing_garbage_collection#Na%C3%AFve_mark-and-sweep">Mark-and-Sweep</a>.
+                In essence, at the start of a program a <em>root-set</em> is created which contains references to root objects.
+                Root objects are starting points of the program such as global variables, stack variables —anything the program
+                can directly reach without following pointers. Given this the algorithm is very simple:
+                <ol>
+                <li>When an object is created, its parent references it and it’s marked as in use.</li>
+                <li>Deleting an object removes its reference from the parent, marking it as unused.</li>
+                <li>Periodically, the GC traverses reference trees, deallocating unreachable (unmarked) objects.</li>
+                </ol>
+                Therefore, to have a memory leak we need to always have a reference pointed to an object.
+                The cases that this holds true are:
+                <ol>
+                <li>Circular references: an object A points to an object B, and at the same time B points to A. This means both A and B always have a reference
+                pointed at them, marking them as "in use" by the GC.</li>
+                <li>Adding objects to root objects without removing them, like a list that keeps growing.</li>
+                </ol>
+                In our case, the issue lay in the latter. At that time, we were tracking requests using Sentry.
+                Because Sentry by default didn't provide the details that we needed, we had to add custom tags to each log message.
+<pre><code>import logger from "@lib/logger";
+import * as Sentry from "@sentry/bun";
+
+function addLoggingArgsToSentry(args: { [key: string]: any }) {
+    Object.entries(args).forEach(([key, value]) => {
+        if (key !== "message") {
+        	Sentry.setTag(key, value); // memleak🚰
+        }
+    });
+}</code></pre>
+				<p>
+				The depndency Sentry object was a global. Calling <code>Sentry.setTag(key, value)</code> increased the Sentry object size upon each
+				request, resulting in a memory leak! Migrating our logs to Prometheus solved this issue. Easy peasy.
+				</p>
                 <h3>
                     So why didn't we do this from the start?
                 </h3>
