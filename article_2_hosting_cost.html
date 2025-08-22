@@ -72,7 +72,7 @@
                     TL;DR
                 </h3>
                 <p>
-                   This is a short story on how we managed to reduce the estimated hosting costs of a kubernetes cluster,
+                   This is a short story about how we managed to reduce the estimated hosting costs of a Kubernetes cluster,
                    just before going live in production. In short, I had to resolve a memory leak issue and migrate
                    the HTTP server framework (from <a href="https://nextjs.org/docs/pages/building-your-application/routing/api-routes">Next.js routes</a> to a <a href="https://bun.com/docs/api/http">Bun server</a>).
                 </p>
@@ -82,62 +82,61 @@
                 <p>
                     This story takes place during the <a href="https://academy.binance.com/en/glossary/mainnet">mainnet-launch</a> period of
                     <a href="https://www.walrus.xyz">Walrus</a> and <a href="https://github.com/mystenLabs/walrus-sites">Walrus Sites</a>,
-                    early March 2025.
+                    in early March 2025.
                     <ul>
-                        <li>Walrus is a decentralized storage solution. Think of it like Google Cloud Storage or Amazon S3 but "shards" of your files
-                        are distributed across multiple servers, thus competing with <a href="http://arweave.org">Arweave</a> and <a href="http://ipfs.tech">IPFS</a>.</li>
+                        <li>Walrus is a decentralized storage solution. Think of it like Google Cloud Storage or Amazon S3, but "shards" of your files
+                        are distributed across multiple servers, competing with <a href="http://arweave.org">Arweave</a> and <a href="http://ipfs.tech">IPFS</a>.</li>
                         <br>
-                        <li>Walrus Sites, is a website hosting solution with its main principle being that file resources (JS, CSS, HTML)
+                        <li>Walrus Sites is a website hosting solution whose main principle is that file resources (JS, CSS, HTML)
                         are saved on Walrus.</li>
                     </ul>
                     These websites are accessed through "portals" that translate user requests into HTTP calls to Walrus.
-                    i.e., <code>https://wal.app</code> is the domain of the server portal. If you need to access your site,
-                    you would request <code>https://name-of-your-site.wal.app</code>. This way the <code>wal.app</code> portal will
+                    For example, <code>https://wal.app</code> is the domain of the server portal. If you need to access your site,
+                    you would request <code>https://name-of-your-site.wal.app</code>. This way, the <code>wal.app</code> portal will
                     fetch the <code>name-of-your-site</code> resources and serve them to the end user.
                     <br>
-                    My colleagues' responsibilities and mine were to build the core features of the product, as well as optimize both speed
-                    (increasing requests per second) and reduce cost.
+                    My colleagues and I were responsible for building the core features of the product, as well as optimizing both speed
+                    (increasing requests per second) and reducing cost.
                     Let's explore how things turned out.
                 </p>
                 <h3>
                     Ready, set... wait! Can we even launch?
                 </h3>
                 <p>
-                    At that time we were three weeks away from launching on mainnet. This would mean
+                    At that time, we were three weeks away from launching on mainnet. This would mean
                     an exponential increase in traffic.
                     <br>
-                    We thought that we were ready until the frontend of a famous NFT airdrop was hosted to
-                    our (at the time) live Walrus Sites testnet (staging) portal. Airdrops in general are infamous for
-                    creating traffic spikes, and this was not an exception. Our portal was flooded with requests,
-                    until it became unresponsive. Users were not very happy, neither stakeholders.
+                    We thought we were ready until the frontend of a famous NFT airdrop was hosted on our (at the time) live Walrus Sites testnet (staging) portal. Airdrops in general are infamous for
+                    creating traffic spikes, and this was no exception. Our portal was flooded with requests,
+                    until it became unresponsive. Users were not very happy, nor were stakeholders.
                     <br>
                 </p>
                 <h3>
                     The two culprits
                 </h3>
                 <p>
-                    During the post-mortem, we took a look at the charts inside of our kubernetes cluster.
+                    During the post-mortem, we took a look at the charts inside our Kubernetes cluster.
                     The results were the following:
                 </p>
                 <ol>
-                    <li>During the airdrop that lasted one day, in total we received approximately 113K requests.
+                    <li>During the airdrop, which lasted one day, we received approximately 113K requests.
                         At the peak of the event, we had 180 req/sec, and things started looking bad at around 100 req/sec.
-                        We had three kubernetes pods then, which means 33 req/sec were enough to overload a single pod.
+                        We had three Kubernetes pods then, which means 33 req/sec were enough to overload a single pod.
                     </li>
                     <br>
                     <li>Looking at the memory usage of each container, the amount of RAM used was only increasing despite the load,
-                    	which is a bad smell for memory leaks.</li>
+                    	which is a bad sign for memory leaks.</li>
                 </ol>
                 <p>
                     After the incident, we made some adjustments and scaled out to 15 pods per region, which is 45 pods in total.
-                    Each kubernetes node could take about 12-16 pods, which means that we were basically able to handle 150 req/sec
+                    Each Kubernetes node could take about 12-16 pods, which meant we were able to handle 150 req/sec
                     in each region for the time being.
                     <br>
                     But this was not enough. When Walrus Sites became popular, those numbers were not enough to handle future -unforgiving-
-                    airdrops. To provision the cluster in order to serve 1500 req/sec we would need to spin up 30 kubernetes nodes,
+                    airdrops. To provision the cluster to serve 1500 req/sec, we would need to spin up 30 Kubernetes nodes,
                     <b>costing $30k per month</b>.
                     <br>
-                    Evidently, we should move fast and fix things.
+                    Evidently, we needed to move fast and fix things.
                 </p>
                 <h3>
                     Fixing the memory leak
@@ -149,7 +148,7 @@
                     But in our case, we were using a JavaScript runtime, which does implement it.
                     So why was it possible to have a memory leak here?
                     <br>
-                    The fact that high-level languages have GC, is a frequent source of confusion: it can give developers the false impression that
+                    The fact that high-level languages have GC is a frequent source of confusion: it can give developers the false impression that
                     they don't need to worry about memory management.
                 </p>
 
@@ -157,16 +156,16 @@
 
                 <p>
                 The most common GC algorithm is <a href="https://en.wikipedia.org/wiki/Tracing_garbage_collection#Na%C3%AFve_mark-and-sweep">Mark-and-Sweep</a>.
-                In essence, at the start of a program a <em>root-set</em> is created which contains references to root objects.
-                Root objects are starting points of the program such as global variables, stack variables —anything the program
-                can directly reach without following pointers. Given this the algorithm is very simple:
+                In essence, at the start of a program, a <em>root-set</em> is created which contains references to root objects.
+                Root objects are starting points of the program such as global variables, stack variables — anything the program
+                can directly reach without following pointers. Given this, the algorithm is very simple:
                 <ol>
                 <li>When an object is created, its parent references it and it’s marked as in use.</li>
                 <li>Deleting an object removes its reference from the parent, marking it as unused.</li>
                 <li>Periodically, the GC traverses reference trees, deallocating unreachable (unmarked) objects.</li>
                 </ol>
-                Therefore, to have a memory leak we need to always have a reference pointed to an object.
-                The cases that this holds true are:
+                Therefore, to have a memory leak, we need to always have a reference pointed to an object.
+                The cases where this holds true are:
                 <ol>
                 <li>Circular references: an object A points to an object B, and at the same time B points to A. This means both A and B always have a reference
                 pointed at them, marking them as "in use" by the GC.</li>
@@ -185,7 +184,7 @@ function addLoggingArgsToSentry(args: { [key: string]: any }) {
     });
 }</code></pre>
 				<p>
-				The depndency Sentry object was a global. Calling <code>Sentry.setTag(key, value)</code> increased the Sentry object size upon each
+				The dependency Sentry object was a global. Calling <code>Sentry.setTag(key, value)</code> increased the Sentry object size upon each
 				request, resulting in a memory leak! Migrating our logs to Grafana solved this issue. Easy peasy.
 				</p>
 				<h3>
@@ -193,34 +192,34 @@ function addLoggingArgsToSentry(args: { [key: string]: any }) {
 				</h3>
 				<p>
 					Fixing the memory leak was good, but we could do better.
-					While Next.js is convenient for quickly bootstraping and deploying proof of concepts through an excelent integration with Vercel,
+					While Next.js is convenient for quickly bootstrapping and deploying proof of concepts through excellent integration with Vercel,
 					we had to consider the following:
 					<br>
 					While our HTTP server included just a few lines of code:
 				</p>
 				<ol>
 					<li>Next.js comes with its own “batteries included” handlers in /_next, plus a <a href="https://security.snyk.io/package/npm/next">long security baggage</a>.</li>
-					<li>Awkward routing: we had to find "hacky" ways for overriding the file-based routing logic when handling subdomains like <code>https://docs.wal.app</code>.</li>
-					<li>Vercel did not support at the time <a href="https://bun.sh">Bun</a> an alternative to Node.js with extraordinary performance.</li>
-					<li>A lot of <a href="https://security.snyk.io/package/npm/next">security issues</a>. Rememver <b>CVE-2025-29927</b>?</li>
+					<li>Awkward routing: we had to find "hacky" ways to override the file-based routing logic when handling subdomains like <code>https://docs.wal.app</code>.</li>
+					<li>Vercel did not support <a href="https://bun.sh">Bun</a> at the time, an alternative to Node.js with extraordinary performance.</li>
+					<li>A lot of <a href="https://security.snyk.io/package/npm/next">security issues</a>. Remember <b>CVE-2025-29927</b>?</li>
 				</ol>
 				<p>
-					So migrating to Bun as a package manager, a runtime and an HTTP server improved both our performance but also the readability of our code.
+					So migrating to Bun as a package manager, runtime, and HTTP server improved both our performance and the readability of our code.
 					The migration was simple, because Bun supports most Node.js APIs and package managers.
 				</p>
 				<h3>
 					Results
 				</h3>
 				<p>
-					Following these updates, we notice the following improvements:
+					Following these updates, we noticed the following improvements:
 				</p>
 				<ol>
-					<li>During the first 12 hours after mainnet launch we received 845.31k hits.</li>
-					<li>CPU usage stable at ~ 2%, while memory usage stabilized at ~ 16-18%.</li>
-					<li>Our backend servers now could handle 3000 req/sec (compared to 1500 req/sec that we would handle initially on prod data).</li>
-					<li>Average response time dropped to 0.5sec, with p99 being under 1 second.</li>
+					<li>During the first 12 hours after mainnet launch, we received 845.31k hits.</li>
+					<li>CPU usage stable at ~2%, while memory usage stabilized at ~16-18%.</li>
+					<li>Our backend servers could now handle 3000 req/sec (compared to 1500 req/sec that we would handle initially on prod data).</li>
+					<li>Average response time dropped to 0.5 sec, with p99 being under 1 second.</li>
 					<li><b>Costs</b>: For each pod, using 1 core CPU & 1G RAM, our node was 16 cores & 128G RAM.
-						Using the c4-highram-16 compute engine pricing with $1.04 /hr, we averaged around $760 a month,
+						Using the c4-highram-16 compute engine pricing at $1.04/hr, we averaged around $760 a month,
 						so 12 pods were about 12/16 * 760 = $570 a month (compared to $30,000 that we had initially). That is 12*($30,000-$570) = $353,160 in a year!</li>
 					<li>We experienced no downtime whatsoever, even many months after launch!</li>
 				</ol>
@@ -232,9 +231,9 @@ function addLoggingArgsToSentry(args: { [key: string]: any }) {
                 </h3>
                 <p>
                 	Because <a href="https://vercel.com/docs/functions">serverless</a>!
-                 	Our initial setup was running on Vercel which was expensive and infrastructure management was not under our own control.
-                  	Because we wanted to be in complete control (and responsible) of how our servers scaled, we decided to migrate to a kubernetes cluster.
-                   	This meant that we migrated from a stateless environment (serverless) to a stateful (kubernetes) one. i.e.:
+                 	Our initial setup was running on Vercel, which was expensive and infrastructure management was not under our own control.
+                  	Because we wanted to be in complete control (and responsible) for how our servers scaled, we decided to migrate to a Kubernetes cluster.
+                   	This meant that we migrated from a stateless environment (serverless) to a stateful (Kubernetes) one. i.e.:
                 </p>
                 <ul>
                 	<li>Memory leaks were hidden because servers were spawning and restarting automatically, masking the RAM usage accumulation.</li>
@@ -242,7 +241,7 @@ function addLoggingArgsToSentry(args: { [key: string]: any }) {
 	                    where the observed performance was sufficient for the initial steps of the project.</li>
                 </ul>
                 <p>
-                    Overall, this was all an interesting experience. Tackling challenges like these is what keeps our work exciting!
+                    Overall, this was an interesting experience. Tackling challenges like these is what keeps our work exciting!
                 </p>
             </div>
             <br/>
