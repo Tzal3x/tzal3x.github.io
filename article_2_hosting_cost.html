@@ -186,10 +186,46 @@ function addLoggingArgsToSentry(args: { [key: string]: any }) {
 }</code></pre>
 				<p>
 				The depndency Sentry object was a global. Calling <code>Sentry.setTag(key, value)</code> increased the Sentry object size upon each
-				request, resulting in a memory leak! Migrating our logs to Prometheus solved this issue. Easy peasy.
+				request, resulting in a memory leak! Migrating our logs to Grafana solved this issue. Easy peasy.
+				</p>
+				<h3>
+					Improving the HTTP server's performance
+				</h3>
+				<p>
+					Fixing the memory leak was good, but we could do better.
+					While Next.js is convenient for quickly bootstraping and deploying proof of concepts through an excelent integration with Vercel,
+					we had to consider the following:
+					<br>
+					While our HTTP server included just a few lines of code:
+				</p>
+				<ol>
+					<li>Next.js comes with its own “batteries included” handlers in /_next, plus a <a href="https://security.snyk.io/package/npm/next">long security baggage</a>.</li>
+					<li>Awkward routing: we had to find "hacky" ways for overriding the file-based routing logic when handling subdomains like <code>https://docs.wal.app</code>.</li>
+					<li>Vercel did not support at the time <a href="https://bun.sh">Bun</a> an alternative to Node.js with extraordinary performance.</li>
+					<li>A lot of <a href="https://security.snyk.io/package/npm/next">security issues</a>. Rememver <b>CVE-2025-29927</b>?</li>
+				</ol>
+				<p>
+					So migrating to Bun as a package manager, a runtime and an HTTP server improved both our performance but also the readability of our code.
+					The migration was simple, because Bun supports most Node.js APIs and package managers.
+				</p>
+				<h3>
+					Results
+				</h3>
+				<p>
+					Following these updates, we notice the following improvements:
+				</p>
+				<ol>
+					<li>Our backend servers now could handle 3000 req/sec (compared to 1500 req/sec that we would handle initially on prod data).</li>
+					<li>Average response time dropped to 0.5sec, with p99 being under 1 second.</li>
+					<li>For each pod, using 1 core CPU & 1G RAM, our node was 16 cores & 128G RAM.
+						Using the c4-highram-16 compute engine pricing with $1.04 /hr, we averaged around $760 a month,
+						so 12 pods were about 12/16 * 760 = $570 a month (compared to $30,000 that we had initially). That is 12*($30,000-$570) = $353,160 in a year!</li>
+				</ol>
+				<p>
+					With these fixes in place, we were finally set to launch—no longer worried about NFT airdrop traffic spikes or dreaded hosting invoices!
 				</p>
                 <h3>
-                    So why didn't we do this from the start?
+                    Why didn't we do this from the start?
                 </h3>
                 <p>
                 </p>
