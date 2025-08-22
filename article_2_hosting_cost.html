@@ -220,6 +220,7 @@ function addLoggingArgsToSentry(args: { [key: string]: any }) {
 					<li>For each pod, using 1 core CPU & 1G RAM, our node was 16 cores & 128G RAM.
 						Using the c4-highram-16 compute engine pricing with $1.04 /hr, we averaged around $760 a month,
 						so 12 pods were about 12/16 * 760 = $570 a month (compared to $30,000 that we had initially). That is 12*($30,000-$570) = $353,160 in a year!</li>
+					<li>We experienced no downtime whatsoever, even many months after launch!</li>
 				</ol>
 				<p>
 					With these fixes in place, we were finally set to launch—no longer worried about NFT airdrop traffic spikes or dreaded hosting invoices!
@@ -228,6 +229,18 @@ function addLoggingArgsToSentry(args: { [key: string]: any }) {
                     Why didn't we do this from the start?
                 </h3>
                 <p>
+                	Because <a href="https://vercel.com/docs/functions">serverless</a>!
+                 	Our initial setup was running on Vercel which was expensive and infrastructure management was not under our own control.
+                  	Because we wanted to be in complete control (and responsible) of how our servers scaled, we decided to migrate to a kubernetes cluster.
+                   	This meant that we migrated from a stateless environment (serverless) to a stateful (kubernetes) one. i.e.:
+                </p>
+                <ul>
+                	<li>Memory leaks were hidden because servers were spawning and restarting automatically, masking the RAM usage accumulation.</li>
+                    <li>Next.js goes hand in hand with Vercel, using the <a href="https://vercel.com/docs/functions/runtimes/edge">edge runtime</a>,
+	                    where the observed performance was sufficient for the initial steps of the project.</li>
+                </ul>
+                <p>
+                    Overall, this was all an interesting experience. Tackling challenges like these is what keeps our work exciting!
                 </p>
             </div>
             <br/>
