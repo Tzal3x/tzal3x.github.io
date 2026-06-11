@@ -1,48 +1,28 @@
 <!doctype html>
-<html>
+<html lang="en">
     <head>
-        <title>Alex Tzimas | Personal Website</title>
+        <title>A LoRaWAN setup tale of spring 2024 | Alex Tzimas</title>
         <link
             rel="stylesheet"
             href="https://unpkg.com/terminal.css@0.7.4/dist/terminal.min.css"
         />
         <link rel="icon" href="favicon.svg" />
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="style.css" />
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="A struggling story of setting up a simple LoRaWAN network with a gateway and end nodes."
+        />
     </head>
-    <script>hljs.initHighlightingOnLoad();</script>
-    <script>
-        function sendEmail() {
-            window.location = "mailto:tzalex@outlook.com.gr";
-        }
-    </script>
     <body>
-        <div
-            class="root"
-            style="
-                display: flex;
-                justify-content: flex-start;
-                flex-direction: column;
-                align-items: center;
-                height: 100vh;
-                padding: 20px;
-            "
-        >
+        <div class="root">
             <header>
                 <h1 class="terminal-prompt">Alex Tzimas</h1>
             </header>
-            <div style="width: 100%; max-width: 800px">
+            <div class="container">
                 <nav>
-                    <ul
-                        style="
-                            display: flex;
-                            flex-direction: row;
-                            justify-content: space-evenly;
-                            gap: 24px;
-                            flex-wrap: wrap;
-                        "
-                    >
+                    <ul>
                         <!-- TODO - include CV too! -->
                         <li><a href="./index.html">Home</a></li>
 
@@ -57,15 +37,8 @@
                     </ul>
                 </nav>
             </div>
-            <div
-                style="70ch;
-                width: 100%;
-                max-width: 800px;
-                margin-top: 20px;
-                padding: 20px;
-              line-height: 1.75;"
-            >
-                <h2 style="text-align: center">
+            <div class="article-body container">
+                <h2 class="article-title">
                     A LoRaWAN setup tale of spring 2024
                 </h2>
                 <p>

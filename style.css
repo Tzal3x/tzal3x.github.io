@@ -1,0 +1,97 @@
+/* Shared layout for all pages — complements terminal.css.
+   Replaces the inline styles that were duplicated on every page. */
+
+.root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* min-height (not height): pages taller than the viewport must grow,
+       and fixed 100vh misbehaves on mobile browsers with dynamic toolbars */
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 12px 24px;
+    flex-wrap: wrap;
+    padding-left: 0;
+}
+
+nav a[aria-current="page"] {
+    border-bottom: 2px solid currentColor;
+}
+
+.sections-grid {
+    display: grid;
+    grid-template-rows: auto;
+    gap: 20px;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.article-body {
+    margin-top: 20px;
+    padding: 20px;
+    line-height: 1.75;
+}
+
+.article-title {
+    text-align: center;
+}
+
+/* Article cards are real links now (no onclick JS) */
+a.card-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+/* --- Responsive guards ------------------------------------------- */
+
+/* Wide tables (About page) scroll inside their box instead of
+   stretching the page on phones */
+.table-wrap {
+    overflow-x: auto;
+}
+
+/* Code blocks scroll horizontally instead of overflowing the viewport */
+pre {
+    overflow-x: auto;
+    max-width: 100%;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.resource-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-list li {
+    overflow-wrap: anywhere; /* long emails/URLs never overflow on phones */
+}
+
+@media (max-width: 600px) {
+    .root {
+        padding: 12px;
+    }
+    .sections-grid,
+    .article-body {
+        padding: 8px;
+    }
+    h1 {
+        font-size: 1.6rem;
+    }
+}
