@@ -25,6 +25,12 @@ nav ul {
     padding-left: 0;
 }
 
+/* Comfortable tap targets on touch screens (44px-ish hit area) */
+nav a {
+    display: inline-block;
+    padding: 8px 4px;
+}
+
 nav a[aria-current="page"] {
     border-bottom: 2px solid currentColor;
 }
@@ -83,6 +89,18 @@ img {
     overflow-wrap: anywhere; /* long emails/URLs never overflow on phones */
 }
 
+/* Reading time on article cards */
+.card-meta {
+    margin-top: 8px;
+    font-size: 0.85em;
+    color: var(--secondary-color);
+}
+
+/* End-of-article navigation */
+.back-link {
+    margin-top: 2em;
+}
+
 @media (max-width: 600px) {
     .root {
         padding: 12px;
@@ -93,5 +111,24 @@ img {
     }
     h1 {
         font-size: 1.6rem;
+    }
+}
+
+/* Dark mode — terminal.css's official dark palette, applied automatically
+   when the OS/browser prefers it. No JS, no toggle. */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #222225;
+        --font-color: #e8e9ed;
+        --invert-font-color: #222225;
+        --secondary-color: #a3abba;
+        --tertiary-color: #a3abba;
+        --primary-color: #62c4ff;
+        --error-color: #ff3c74;
+        --progress-bar-background: #3f3f44;
+        --progress-bar-fill: #62c4ff;
+        --code-bg-color: #3f3f44;
+        --input-style: solid;
+        --display-text-color: white;
     }
 }
