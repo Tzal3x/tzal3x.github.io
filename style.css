@@ -28,7 +28,9 @@
     /* Low-res Game Boy Camera-style portrait — keep the pixels crisp
        instead of letting the browser blur them when scaling down. */
     image-rendering: pixelated;
-    border: 2px solid var(--secondary-color);
+    /* Very thin, soft outline — half-transparent so it whispers rather
+       than frames the photo, in both light and dark mode. */
+    border: 1px solid color-mix(in srgb, var(--secondary-color) 40%, transparent);
 }
 
 nav ul {
