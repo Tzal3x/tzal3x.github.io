@@ -1,64 +1,50 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <title>Alex Tzimas | Personal Website</title>
-        <link rel="stylesheet" href="terminal.min.css" />
-        <link rel="stylesheet" href="style.css" />
-        <!-- Theme: apply the saved choice before first paint (no flash),
+
+<head>
+    <title>Alex Tzimas | Personal Website</title>
+    <link rel="stylesheet" href="terminal.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <!-- Theme: apply the saved choice before first paint (no flash),
              then theme.js adds the system/light/dark control to the nav. -->
-        <script>
-            (function () {
-                try {
-                    var t = localStorage.getItem("theme");
-                    document.documentElement.dataset.theme =
-                        t === "light" || t === "dark" ? t : "system";
-                } catch (e) {
-                    document.documentElement.dataset.theme = "system";
-                }
-            })();
-        </script>
-        <script src="theme.js" defer></script>
-        <link rel="icon" href="favicon.svg" />
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta
-            name="description"
-            content="Personal website of Alex Tzimas, software engineer based in Zurich, Switzerland."
-        />
-        <link rel="canonical" href="https://tzal3x.github.io/" />
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem("theme");
+                document.documentElement.dataset.theme =
+                    t === "light" || t === "dark" ? t : "system";
+            } catch (e) {
+                document.documentElement.dataset.theme = "system";
+            }
+        })();
+    </script>
+    <script src="theme.js" defer></script>
+    <link rel="icon" href="favicon.svg" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Personal website of Alex Tzimas, software engineer based in Zurich, Switzerland." />
+    <link rel="canonical" href="https://tzal3x.github.io/" />
 
-        <!-- Open Graph / social sharing -->
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="Alex Tzimas" />
-        <meta property="og:title" content="Alex Tzimas | Personal Website" />
-        <meta
-            property="og:description"
-            content="Personal website of Alex Tzimas, software engineer based in Zurich, Switzerland."
-        />
-        <meta property="og:url" content="https://tzal3x.github.io/" />
-        <meta
-            property="og:image"
-            content="https://tzal3x.github.io/images/og-card.png"
-        />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta
-            property="og:image:alt"
-            content="Alex Tzimas — Software Engineer, Zurich, Switzerland"
-        />
-        <meta property="og:locale" content="en_US" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Alex Tzimas | Personal Website" />
-        <meta
-            name="twitter:description"
-            content="Personal website of Alex Tzimas, software engineer based in Zurich, Switzerland."
-        />
-        <meta
-            name="twitter:image"
-            content="https://tzal3x.github.io/images/og-card.png"
-        />
+    <!-- Open Graph / social sharing -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Alex Tzimas" />
+    <meta property="og:title" content="Alex Tzimas | Personal Website" />
+    <meta property="og:description"
+        content="Personal website of Alex Tzimas, software engineer based in Zurich, Switzerland." />
+    <meta property="og:url" content="https://tzal3x.github.io/" />
+    <meta property="og:image" content="https://tzal3x.github.io/images/og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Alex Tzimas — Software Engineer, Zurich, Switzerland" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Alex Tzimas | Personal Website" />
+    <meta name="twitter:description"
+        content="Personal website of Alex Tzimas, software engineer based in Zurich, Switzerland." />
+    <meta name="twitter:image" content="https://tzal3x.github.io/images/og-card.png" />
 
-        <script type="application/ld+json">
+    <script type="application/ld+json">
             {
                 "@context": "https://schema.org",
                 "@type": "Person",
@@ -78,95 +64,83 @@
                 ]
             }
         </script>
-    </head>
-    <body>
-        <a class="skip-link" href="#main">Skip to content</a>
-        <div class="root">
-            <header>
-                <img
-                    class="profile-photo"
-                    src="images/me-gbc-filter.png"
-                    alt="Alex Tzimas"
-                    width="120"
-                    height="120"
-                />
-                <h1 class="terminal-prompt">Alex Tzimas</h1>
-            </header>
-            <div class="container">
-                <nav aria-label="Primary">
-                    <ul>
-                        <!-- TODO - include CV too! -->
-                        <li><a href="./index.html" aria-current="page">Home</a></li>
-                        <li><a href="./about.html">About Me</a></li>
-                        <li><a href="./resources.html">Resources & Good reads</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <main id="main" class="sections-grid container">
-                <div class="wrapper">
-                    <section>
-                        <h2 class="intro-title">Intro</h2>
-                        <p class="intro-description">
-                            Welcome to my personal website! I am a software
-                            engineer based in Zurich, Switzerland with a passion for
-                            books, foreign languages and frugal software.
-                            This is the place where I do my shameless
-                            self-promo and write articles for stuff that I
-                            consider interesting (and hopefully you will too).
-                        </p>
-                    </section>
-                </div>
-                <div class="wrapper">
-                    <section>
-                        <h2 class="website-title">Articles</h2>
-                        <p class="website-description">
-                            Here you will find some of my writings. In the
-                            future, I will expand this section with more
-                            articles as long as time allows and motivation
-                            persists.
-                        </p>
-                        <div class="terminal-timeline">
-                            <a
-                                class="card-link"
-                                href="./article_2_hosting_cost.html"
-                            >
-                                <div class="terminal-card">
-                                    <header>
-                                        <time datetime="2025-08">Aug. 2025</time>:
-                                        <i>"Cutting $350K/year in hosting costs"</i>
-                                    </header>
-                                    <div>
-                                        The challenge of improving our
-                                        infrastructure performance and cost
-                                        before a major launch.
-                                        <div class="card-meta">~6 min read</div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a
-                                class="card-link"
-                                href="./article_1_lorawan_setup.html"
-                            >
-                                <div class="terminal-card">
-                                    <header>
-                                        <time datetime="2024-04">Apr. 2024</time>:
-                                        <i>"A LoRaWAN setup tale of spring 2024"</i>
-                                    </header>
-                                    <div>
-                                        A struggling story of setting up a simple
-                                        LoRaWAN network with a gateway and end
-                                        nodes. How hard can it be?
-                                        <div class="card-meta">~9 min read</div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </section>
-                </div>
-            </main>
-            <footer>
-                <p>&copy; Alex Tzimas 2026</p>
-            </footer>
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="root">
+        <header>
+            <img class="profile-photo" src="images/me-gbc-filter.png" alt="Alex Tzimas" width="120" height="120" />
+            <h1 class="terminal-prompt">Alex Tzimas</h1>
+        </header>
+        <div class="container">
+            <nav aria-label="Primary">
+                <ul>
+                    <!-- TODO - include CV too! -->
+                    <li><a href="./index.html" aria-current="page">Home</a></li>
+                    <li><a href="./about.html">About Me</a></li>
+                    <li><a href="./resources.html">Resources & Good reads</a></li>
+                </ul>
+            </nav>
         </div>
-    </body>
+        <main id="main" class="sections-grid container">
+            <div class="wrapper">
+                <section>
+                    <h2 class="intro-title">Intro</h2>
+                    <p class="intro-description">
+                        Welcome to my personal website! I am a software
+                        engineer based in Zurich, Switzerland with a passion for
+                        books, foreign languages and frugal software.
+                        This is the place where I do my shameless
+                        self-promo and write articles for stuff that I
+                        consider interesting (and hopefully you will too).
+                    </p>
+                </section>
+            </div>
+            <div class="wrapper">
+                <section>
+                    <h2 class="website-title">Articles</h2>
+                    <p class="website-description">
+                        Here you will find some of my writings. I'll expand this section with more articles as time
+                        allows and I manage to stay distraction-free.
+                    </p>
+                    <div class="terminal-timeline">
+                        <a class="card-link" href="./article_2_hosting_cost.html">
+                            <div class="terminal-card">
+                                <header>
+                                    <time datetime="2025-08">Aug. 2025</time>:
+                                    <i>"Cutting $350K/year in hosting costs"</i>
+                                </header>
+                                <div>
+                                    The challenge of improving our
+                                    infrastructure performance and cost
+                                    before a major launch.
+                                    <div class="card-meta">~6 min read</div>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="card-link" href="./article_1_lorawan_setup.html">
+                            <div class="terminal-card">
+                                <header>
+                                    <time datetime="2024-04">Apr. 2024</time>:
+                                    <i>"A LoRaWAN setup tale of spring 2024"</i>
+                                </header>
+                                <div>
+                                    A struggling story of setting up a simple
+                                    LoRaWAN network with a gateway and end
+                                    nodes. How hard can it be?
+                                    <div class="card-meta">~9 min read</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </main>
+        <footer>
+            <p>&copy; Alex Tzimas 2026</p>
+        </footer>
+    </div>
+</body>
+
 </html>
