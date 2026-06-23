@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tzal3x.github.io/sitemap.xml

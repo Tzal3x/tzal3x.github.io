@@ -1,0 +1,14 @@
+# Alex Tzimas
+
+> Personal website of Alex Tzimas — a software engineer based in Athens, Greece, with a passion for books, frugal software, and the slow movement. The site hosts a short bio and a handful of long-form engineering articles.
+
+## Pages
+
+- [Home](https://tzal3x.github.io/index.html): Intro and an index of articles.
+- [About Me](https://tzal3x.github.io/about.html): Education and career timeline, plus contact and social links (GitHub, LinkedIn, email).
+- [Resources & Good reads](https://tzal3x.github.io/resources.html): A curated list of favourite software-engineering resources and essays.
+
+## Articles
+
+- [Cutting $350K/year in hosting costs](https://tzal3x.github.io/article_2_hosting_cost.html): How a Kubernetes-hosted service cut an estimated $350K/year before a mainnet launch by fixing a memory leak and migrating from Next.js to a Bun server (Aug. 2025).
+- [A LoRaWAN setup tale of spring 2024](https://tzal3x.github.io/article_1_lorawan_setup.html): A hands-on, troubleshooting-heavy story of building a simple LoRaWAN network with a gateway and end nodes (Apr. 2024).

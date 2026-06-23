@@ -16,6 +16,24 @@
     max-width: 800px;
 }
 
+/* Skip link: hidden off-screen until a keyboard user tabs to it, then it
+   pops into the top-left so they can jump past the repeated nav. */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 10;
+    padding: 8px 12px;
+    background-color: var(--font-color);
+    color: var(--invert-font-color);
+    text-decoration: none;
+}
+
+.skip-link:focus {
+    left: 8px;
+    top: 8px;
+}
+
 /* Profile photo above the name. Class selector beats the generic `img`
    rule below, so the fixed 120px box wins over `height: auto`. */
 .profile-photo {

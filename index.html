@@ -11,8 +11,56 @@
             name="description"
             content="Personal website of Alex Tzimas, software engineer based in Athens, Greece."
         />
+        <link rel="canonical" href="https://tzal3x.github.io/" />
+
+        <!-- Open Graph / social sharing -->
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Alex Tzimas" />
+        <meta property="og:title" content="Alex Tzimas | Personal Website" />
+        <meta
+            property="og:description"
+            content="Personal website of Alex Tzimas, software engineer based in Athens, Greece."
+        />
+        <meta property="og:url" content="https://tzal3x.github.io/" />
+        <meta
+            property="og:image"
+            content="https://tzal3x.github.io/images/me-gbc-filter.png"
+        />
+        <meta property="og:locale" content="en_US" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Alex Tzimas | Personal Website" />
+        <meta
+            name="twitter:description"
+            content="Personal website of Alex Tzimas, software engineer based in Athens, Greece."
+        />
+        <meta
+            name="twitter:image"
+            content="https://tzal3x.github.io/images/me-gbc-filter.png"
+        />
+
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "Person",
+                "name": "Alex Tzimas",
+                "url": "https://tzal3x.github.io/",
+                "image": "https://tzal3x.github.io/images/me-gbc-filter.png",
+                "jobTitle": "Software Engineer",
+                "worksFor": { "@type": "Organization", "name": "Mysten Labs" },
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Athens",
+                    "addressCountry": "GR"
+                },
+                "sameAs": [
+                    "https://github.com/tzal3x",
+                    "https://www.linkedin.com/in/alexandros-tzimas-247b0a15a/"
+                ]
+            }
+        </script>
     </head>
     <body>
+        <a class="skip-link" href="#main">Skip to content</a>
         <div class="root">
             <header>
                 <img
@@ -25,7 +73,7 @@
                 <h1 class="terminal-prompt">Alex Tzimas</h1>
             </header>
             <div class="container">
-                <nav>
+                <nav aria-label="Primary">
                     <ul>
                         <!-- TODO - include CV too! -->
                         <li><a href="./index.html" aria-current="page">Home</a></li>
@@ -34,7 +82,7 @@
                     </ul>
                 </nav>
             </div>
-            <div class="sections-grid container">
+            <main id="main" class="sections-grid container">
                 <div class="wrapper">
                     <section>
                         <h2 class="intro-title">Intro</h2>
@@ -67,7 +115,7 @@
                             >
                                 <div class="terminal-card">
                                     <header>
-                                        Aug. 2025:
+                                        <time datetime="2025-08">Aug. 2025</time>:
                                         <i>"Cutting $350K/year in hosting costs"</i>
                                     </header>
                                     <div>
@@ -84,7 +132,7 @@
                             >
                                 <div class="terminal-card">
                                     <header>
-                                        Apr. 2024:
+                                        <time datetime="2024-04">Apr. 2024</time>:
                                         <i>"A LoRaWAN setup tale of spring 2024"</i>
                                     </header>
                                     <div>
@@ -98,7 +146,7 @@
                         </div>
                     </section>
                 </div>
-            </div>
+            </main>
             <footer>
                 <p>&copy; Alex Tzimas 2026</p>
             </footer>
