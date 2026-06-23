@@ -103,6 +103,65 @@ nav a[aria-current="page"] {
     }
 }
 
+/* The control sits on its own centered line in the footer, under the
+   copyright. */
+.theme-toggle-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+/* Theme selector — a segmented control injected by theme.js. Borrows the
+   nav's "selected line" language: quiet cells in the secondary color, the
+   active one inverted into a solid block. Three cells share one border. */
+.theme-toggle {
+    display: inline-flex;
+    overflow: hidden;
+    font-family: monospace;
+    text-transform: lowercase;
+    font-size: 0.85em;
+    letter-spacing: 0.02em;
+    border: 1px solid color-mix(in srgb, var(--secondary-color) 45%, transparent);
+}
+
+.theme-toggle button {
+    appearance: none;
+    margin: 0;
+    border: 0;
+    background: transparent;
+    color: var(--secondary-color);
+    font: inherit;
+    text-transform: inherit;
+    letter-spacing: inherit;
+    padding: 5px 9px;
+    cursor: pointer;
+    transition:
+        color 0.15s ease,
+        background-color 0.15s ease;
+}
+
+/* Hairline divider between cells, matching the group's border. */
+.theme-toggle button + button {
+    border-left: 1px solid
+        color-mix(in srgb, var(--secondary-color) 45%, transparent);
+}
+
+.theme-toggle button:hover,
+.theme-toggle button:focus-visible {
+    color: var(--font-color);
+}
+
+.theme-toggle button[aria-pressed="true"] {
+    color: var(--invert-font-color);
+    background-color: var(--font-color);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .theme-toggle button {
+        transition: none;
+    }
+}
+
 .sections-grid {
     display: grid;
     grid-template-rows: auto;
@@ -182,10 +241,32 @@ img {
     }
 }
 
-/* Dark mode — terminal.css's official dark palette, applied automatically
-   when the OS/browser prefers it. No JS, no toggle. */
+/* Dark mode — terminal.css's official dark palette.
+   Light is the default (from terminal.min.css). The dark palette is applied
+   in two situations, and the theme.js selector switches between them:
+     1. The visitor explicitly picks "dark"  -> :root[data-theme="dark"]
+     2. The visitor is on "system" (or has JS disabled) AND their OS prefers
+        dark -> the media query below, which steps aside the moment an
+        explicit light/dark choice is set on <html data-theme>.
+   This is also why the site still goes dark-by-night with JS turned off.
+   The two property blocks are identical — keep them in sync. */
+:root[data-theme="dark"] {
+    --background-color: #222225;
+    --font-color: #e8e9ed;
+    --invert-font-color: #222225;
+    --secondary-color: #a3abba;
+    --tertiary-color: #a3abba;
+    --primary-color: #62c4ff;
+    --error-color: #ff3c74;
+    --progress-bar-background: #3f3f44;
+    --progress-bar-fill: #62c4ff;
+    --code-bg-color: #3f3f44;
+    --input-style: solid;
+    --display-text-color: white;
+}
+
 @media (prefers-color-scheme: dark) {
-    :root {
+    :root:not([data-theme="light"]):not([data-theme="dark"]) {
         --background-color: #222225;
         --font-color: #e8e9ed;
         --invert-font-color: #222225;

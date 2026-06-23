@@ -4,6 +4,20 @@
         <title>Alex Tzimas | Personal Website</title>
         <link rel="stylesheet" href="terminal.min.css" />
         <link rel="stylesheet" href="style.css" />
+        <!-- Theme: apply the saved choice before first paint (no flash),
+             then theme.js adds the system/light/dark control to the nav. -->
+        <script>
+            (function () {
+                try {
+                    var t = localStorage.getItem("theme");
+                    document.documentElement.dataset.theme =
+                        t === "light" || t === "dark" ? t : "system";
+                } catch (e) {
+                    document.documentElement.dataset.theme = "system";
+                }
+            })();
+        </script>
+        <script src="theme.js" defer></script>
         <link rel="icon" href="favicon.svg" />
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -95,11 +109,8 @@
                         <p class="intro-description">
                             Welcome to my personal website! I am a software
                             engineer based in Zurich, Switzerland with a passion for
-                            books, frugal software, and a love for the
-                            <a
-                                href="https://en.wikipedia.org/wiki/Slow_movement_(culture)#:~:text=%22a%20cultural%20revolution%20against%20the,rather%20than%20just%20counting%20them."
-                                >slow movement</a
-                            >. This is the place where I do my shameless
+                            books, foreign languages and frugal software.
+                            This is the place where I do my shameless
                             self-promo and write articles for stuff that I
                             consider interesting (and hopefully you will too).
                         </p>

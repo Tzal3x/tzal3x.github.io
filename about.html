@@ -4,6 +4,20 @@
         <title>About Me | Alex Tzimas</title>
         <link rel="stylesheet" href="terminal.min.css" />
         <link rel="stylesheet" href="style.css" />
+        <!-- Theme: apply the saved choice before first paint (no flash),
+             then theme.js adds the system/light/dark control to the nav. -->
+        <script>
+            (function () {
+                try {
+                    var t = localStorage.getItem("theme");
+                    document.documentElement.dataset.theme =
+                        t === "light" || t === "dark" ? t : "system";
+                } catch (e) {
+                    document.documentElement.dataset.theme = "system";
+                }
+            })();
+        </script>
+        <script src="theme.js" defer></script>
         <link rel="icon" href="favicon.svg" />
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
