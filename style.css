@@ -33,23 +33,56 @@
     border: 1px solid color-mix(in srgb, var(--secondary-color) 40%, transparent);
 }
 
+/* Terminal "selected line" nav.
+   The site already speaks command line (the name is a terminal-prompt, the
+   articles are terminal-cards), so the menu reads like a row of shell options
+   and the page you're on is the *selected* one — inverted, the way a TUI
+   highlights the active row (fzf / tmux / htop). One bold element; the rest
+   stays quiet. */
 nav ul {
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    gap: 12px 24px;
     flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 10px;
     padding-left: 0;
+    margin: 4px 0 0;
+    font-family: monospace;
+    text-transform: lowercase;
+    letter-spacing: 0.02em;
 }
 
-/* Comfortable tap targets on touch screens (44px-ish hit area) */
 nav a {
     display: inline-block;
-    padding: 8px 4px;
+    padding: 6px 12px;
+    text-decoration: none;
+    color: var(--secondary-color);
+    /* Reserve the box now so hover/active don't shift layout by 1px. */
+    border: 1px solid transparent;
+    transition:
+        color 0.15s ease,
+        border-color 0.15s ease,
+        background-color 0.15s ease;
 }
 
+/* Hover/keyboard focus reveals the item's outline — like moving the
+   selection cursor over a menu entry. */
+nav a:hover,
+nav a:focus-visible {
+    color: var(--font-color);
+    border-color: color-mix(in srgb, var(--secondary-color) 55%, transparent);
+}
+
+/* The page you're on = the selected line: inverted block. */
 nav a[aria-current="page"] {
-    border-bottom: 2px solid currentColor;
+    color: var(--invert-font-color);
+    background-color: var(--font-color);
+    border-color: var(--font-color);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    nav a {
+        transition: none;
+    }
 }
 
 .sections-grid {
