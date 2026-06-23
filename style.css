@@ -46,9 +46,9 @@
     /* Low-res Game Boy Camera-style portrait — keep the pixels crisp
        instead of letting the browser blur them when scaling down. */
     image-rendering: pixelated;
-    /* Crisp 2px ring in the theme's text color — high-contrast like the
+    /* Crisp 1px ring in the theme's text color — high-contrast like the
        dithered photo, and it flips automatically in dark mode. */
-    border: 2px solid var(--font-color);
+    border: 1px solid var(--font-color);
 }
 
 /* Terminal "selected line" nav.
