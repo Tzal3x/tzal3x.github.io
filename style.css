@@ -16,6 +16,21 @@
     max-width: 800px;
 }
 
+/* Profile photo above the name. Class selector beats the generic `img`
+   rule below, so the fixed 120px box wins over `height: auto`. */
+.profile-photo {
+    display: block;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    object-fit: cover;
+    /* Low-res Game Boy Camera-style portrait — keep the pixels crisp
+       instead of letting the browser blur them when scaling down. */
+    image-rendering: pixelated;
+    border: 2px solid var(--secondary-color);
+}
+
 nav ul {
     display: flex;
     flex-direction: row;
