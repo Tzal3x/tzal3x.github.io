@@ -1,6 +1,6 @@
 # Alex Tzimas
 
-> Personal website of Alex Tzimas — a software engineer based in Athens, Greece, with a passion for books, frugal software, and the slow movement. The site hosts a short bio and a handful of long-form engineering articles.
+> Personal website of Alex Tzimas — a software engineer based in Zurich, Switzerland, with a passion for books, frugal software, and the slow movement. The site hosts a short bio and a handful of long-form engineering articles.
 
 ## Pages
 
