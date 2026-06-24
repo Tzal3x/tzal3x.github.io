@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>{{TITLE}} | Alex Tzimas</title>
+        <link rel="stylesheet" href="terminal.min.css" />
+        <link rel="icon" href="favicon.svg" />
+        <link rel="stylesheet" href="style.css" />
+        <!-- Keep this template out of search results. DELETE this line in the real article. -->
+        <meta name="robots" content="noindex, nofollow" />
+        <!-- Theme: apply the saved choice before first paint (no flash),
+             then theme.js adds the system/light/dark control to the nav. -->
+        <script>
+            (function () {
+                try {
+                    var t = localStorage.getItem("theme");
+                    document.documentElement.dataset.theme =
+                        t === "light" || t === "dark" ? t : "system";
+                } catch (e) {
+                    document.documentElement.dataset.theme = "system";
+                }
+            })();
+        </script>
+        <script src="theme.js" defer></script>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="{{DESCRIPTION}}" />
+        <link
+            rel="canonical"
+            href="https://tzal3x.github.io/{{FILENAME}}"
+        />
+
+        <!-- Open Graph / social sharing -->
+        <meta property="og:type" content="article" />
+        <meta property="og:site_name" content="Alex Tzimas" />
+        <meta property="og:title" content="{{TITLE}}" />
+        <meta property="og:description" content="{{DESCRIPTION}}" />
+        <meta
+            property="og:url"
+            content="https://tzal3x.github.io/{{FILENAME}}"
+        />
+        <meta
+            property="og:image"
+            content="https://tzal3x.github.io/images/og-card.png"
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta
+            property="og:image:alt"
+            content="Alex Tzimas — Software Engineer, Zurich, Switzerland"
+        />
+        <meta property="article:published_time" content="{{PUBLISHED_DATE}}" />
+        <meta property="og:locale" content="en_US" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="{{TITLE}}" />
+        <meta name="twitter:description" content="{{DESCRIPTION}}" />
+        <meta
+            name="twitter:image"
+            content="https://tzal3x.github.io/images/og-card.png"
+        />
+
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "BlogPosting",
+                "headline": "{{TITLE}}",
+                "description": "{{DESCRIPTION}}",
+                "image": "https://tzal3x.github.io/images/me-gbc-filter.png",
+                "datePublished": "{{PUBLISHED_DATE}}",
+                "mainEntityOfPage": "https://tzal3x.github.io/{{FILENAME}}",
+                "author": {
+                    "@type": "Person",
+                    "name": "Alex Tzimas",
+                    "url": "https://tzal3x.github.io/about.html"
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <a class="skip-link" href="#main">Skip to content</a>
+        <div class="root">
+            <header>
+                <img
+                    class="profile-photo"
+                    src="images/me-gbc-filter.png"
+                    alt="Alex Tzimas"
+                    width="120"
+                    height="120"
+                />
+                <h1 class="terminal-prompt">Alex Tzimas</h1>
+            </header>
+            <div class="container">
+                <nav aria-label="Primary">
+                    <ul>
+                        <li><a href="./index.html">Home</a></li>
+                        <li><a href="./about.html">About Me</a></li>
+                        <li>
+                            <a href="./resources.html"
+                                >Resources & Good reads</a
+                            >
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <main id="main" class="article-body container">
+                <h2 class="article-title">{{TITLE}}</h2>
+                <h3>TL;DR</h3>
+                <p>
+                    {{One- or two-sentence summary of the article.}}
+                </p>
+
+                <h3>{{Section heading}}</h3>
+                <p>
+                    {{Section content. Use <code>code</code> for inline code,
+                    <pre><code>...</code></pre> for blocks, and <a href="...">links</a>
+                    for references.}}
+                </p>
+
+                <!-- Add more <h3> + <p> / <ul> / <ol> sections as needed. -->
+
+                <p class="back-link">
+                    <a href="./index.html">&larr; All articles</a>
+                </p>
+            </main>
+            <br />
+            <br />
+            <footer>
+                <p>&copy; Alex Tzimas 2026</p>
+            </footer>
+        </div>
+    </body>
+</html>
