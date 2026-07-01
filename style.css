@@ -195,6 +195,14 @@ a.card-link {
     overflow-x: auto;
 }
 
+/* Long unbroken words (e.g. company names like "Cybertechnology") otherwise
+   force a table column wider than the phone viewport, dragging the whole
+   table into horizontal-scroll territory. Letting them break avoids that. */
+.table-wrap td,
+.table-wrap th {
+    overflow-wrap: break-word;
+}
+
 /* Code blocks scroll horizontally instead of overflowing the viewport */
 pre {
     overflow-x: auto;
